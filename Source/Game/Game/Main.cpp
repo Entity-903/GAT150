@@ -6,9 +6,11 @@
 #include "Enemy.h"
 #include "Audio/AudioSystem.h"
 #include "Framework/Scene.h"
+#include "Framework/Resource/ResourceManager.h"
 #include "Renderer/Font.h"
 #include "Renderer/Text.h"
 #include "Renderer/ParticleSystem.h"
+#include "Renderer/Texture.h"
 
 #include "SpaceGame.h"
 
@@ -16,6 +18,8 @@
 #include <vector>
 #include <thread>
 #include <memory>
+#include <array>
+#include <map>
 
 using namespace std;
 
@@ -43,15 +47,16 @@ public:
 	kiko::vec2 m_vel;
 };
 
-
 int main(int argc, char* argv[])
 {
+
+	INFO_LOG("Hello World");
+
 	kiko::MemoryTracker::Initialize();
 	kiko::seedRandom((unsigned int)time(nullptr));
 	kiko::setFilePath("assets");
 
-	// engine initialization
-	//kiko::Renderer renderer;
+	// Engine Initialization
 	kiko::g_renderer.Initialize();
 	kiko::g_renderer.CreateWindow("CSC196", 800, 600);
 
@@ -103,6 +108,9 @@ int main(int argc, char* argv[])
 
 	kiko::Transform transform{ { 400, 300 }, 0, 3};
 
+	// Create Texture
+	kiko::res_t<kiko::Texture> texture = kiko::g_resources.Get<kiko::Texture>("JoeBiden.jpg", kiko::g_renderer);
+
 	// Main Game Loop
 	bool quit = false;
 	while (!quit)
@@ -138,6 +146,9 @@ int main(int argc, char* argv[])
 		// Draw game
 		kiko::g_renderer.SetColor(0, 0, 0, 0);
 		kiko::g_renderer.BeginFrame();
+
+		// Draw Joe Biden
+		kiko::g_renderer.DrawTexture(texture.get(), 200.0f, 200.0f, 0.0f);
 
 		//text->Draw(kiko::g_renderer, 400, 300);
 

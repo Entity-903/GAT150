@@ -27,7 +27,10 @@ namespace kiko
 		int GetWidth() const { return m_width; }
 		int GetHeight() const { return m_height; }
 
+		void DrawTexture(class Texture* texture, float x, float y, float angle = 0.0f);
+
 		friend class Text;
+		friend class Texture;
 
 	private:
 		int m_width = 0;

@@ -16,6 +16,9 @@
     <ClCompile Include="Time.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileIO.h">
@@ -43,6 +46,9 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Color.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>

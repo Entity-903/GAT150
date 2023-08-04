@@ -3,6 +3,8 @@
 #include "Enemy.h"
 
 #include "Framework/Scene.h"
+#include "Framework/Resource/ResourceManager.h"
+#include "Framework/Component/SpriteComponent.h"
 
 #include "Audio/AudioSystem.h"
 #include "Input/InputSystem.h"
@@ -13,14 +15,14 @@
 bool SpaceGame::Initialize()
 {
 	// Create Font / Text Objects
-	m_font = std::make_shared<kiko::Font>("EmptyMegazineDemoRegular.ttf", 24);
-	m_scoreText = std::make_unique<kiko::Text>(m_font);
+	//m_font = kiko::g_resources.Get<kiko::Font>("EmptyMegazineDemoRegular.ttf", 24); //std::make_shared<kiko::Font>("EmptyMegazineDemoRegular.ttf", 24);
+	m_scoreText = std::make_unique<kiko::Text>(kiko::g_resources.Get<kiko::Font>("EmptyMegazineDemoRegular.ttf", 24));
 	m_scoreText->Create(kiko::g_renderer, "SCORE 0000", kiko::Color{ 1, 0, 1, 1 });
 
-	m_titleText = std::make_unique<kiko::Text>(m_font);
+	m_titleText = std::make_unique<kiko::Text>(kiko::g_resources.Get<kiko::Font>("EmptyMegazineDemoRegular.ttf", 24));
 	m_titleText->Create(kiko::g_renderer, "Asteroids", kiko::Color{ 1, 1, 1, 1 });
 
-	m_gameoverText = std::make_unique<kiko::Text>(m_font);
+	m_gameoverText = std::make_unique<kiko::Text>(kiko::g_resources.Get<kiko::Font>("EmptyMegazineDemoRegular.ttf", 24));
 	m_gameoverText->Create(kiko::g_renderer, "Game Over", kiko::Color{ 1, 1, 1, 1 });
 
 	// Load Audio
@@ -30,15 +32,6 @@ bool SpaceGame::Initialize()
 	m_scene = std::make_unique<kiko::Scene>();
 
 
-
-
-
-	//for (int i = 0; i < 5; i++)
-	//{
-	//	unique_ptr<Enemy> enemy = std::make_unique<Enemy>(kiko::randomf(75.0f, 150.0f), kiko::Pi, kiko::Transform{ {kiko::randomf(kiko::g_renderer.GetWidth()), kiko::randomf(kiko::g_renderer.GetHeight())}, kiko::randomf(kiko::TwoPi), 3}, kiko::g_manager.Get("Something.txt"));
-	//	enemy->m_tag = "Enemy";
-	//	scene.Add(std::move(enemy));
-	//}
 
 	return true;
 }
@@ -67,10 +60,16 @@ void SpaceGame::Update(float dt)
 	{
 		m_scene->RemoveAll();
 
+		// Create Player
 		std::unique_ptr<Player> player = std::make_unique<Player>(20.0f, kiko::Pi, kiko::Transform{ { 400, 300 }, 0, 3 }, kiko::g_manager.Get("Ship.txt"));
 		player->m_tag = "Player";
 		player->m_game = this;
 		player->SetDamping(0.9f);
+		// Create Components
+		std::unique_ptr<kiko::SpriteComponent> component = std::make_unique<kiko::SpriteComponent>();
+		component->m_texture = kiko::g_resources.Get<kiko::Texture>("JoeBiden.jpg", kiko::g_renderer);
+		player->AddComponent(std::move(component));
+
 		m_scene->Add(std::move(player));
 	}
 	m_state = eState::Game;
