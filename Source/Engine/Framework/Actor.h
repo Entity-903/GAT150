@@ -14,21 +14,17 @@ public:
 	Actor(const kiko::Transform& transform) :
 		m_transform{ transform }
 	{}
-	Actor(const kiko::Transform& transform, std::shared_ptr<Model> model) :
-		m_transform{ transform },
-		m_model{ model }
-	{}
 
 	virtual void Update(float dt);
 	virtual void Draw(kiko::Renderer& renderer);
 
 	void AddComponent(std::unique_ptr<Component> component);
 
-	float GetRadius() { return (m_model) ? m_model->GetRadius() * m_transform.scale : -10000; }
-	virtual void OnCollision(Actor* other) {}
+	template<typename T>
+	T* GetComponent();
 
-	void AddForce(vec2 force) { m_velocity += force; }
-	void SetDamping(float damping) { m_damping = damping; }
+	float GetRadius() { return 30.0f; }
+	virtual void OnCollision(Actor* other) {}
 
 	class Scene* m_scene = nullptr;
 	friend class Scene;
@@ -44,9 +40,20 @@ protected:
 
 	bool m_destroyed = false;
 
-	std::shared_ptr<Model> m_model;
+	//std::shared_ptr<Model> m_model;
 
-	vec2 m_velocity;
-	float m_damping = 0;
+	//vec2 m_velocity;
+	//float m_damping = 0;
 };
+template<typename T>
+inline T* Actor::GetComponent()
+{
+	for (auto& component : m_components)
+	{
+		T* result = dynamic_cast<T*>(component.get());
+		if (result) return result;
+	}
+
+	return nullptr;
+}
 }

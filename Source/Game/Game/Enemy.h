@@ -6,8 +6,8 @@
 class Enemy : public kiko::Actor
 {
 public:
-	Enemy(float speed, float turnRate, const kiko::Transform& transform, std::shared_ptr<kiko::Model> model, SpaceGame& spaceGame) :
-		Actor{ transform, model },
+	Enemy(float speed, float turnRate, const kiko::Transform& transform, SpaceGame& spaceGame) :
+		Actor{ transform },
 		m_speed{ speed },
 		spaceGame{ spaceGame },
 		m_turnRate{ turnRate }
@@ -25,8 +25,6 @@ private:
 	float m_fireTime = 0;
 	float m_fireRate = 0;
 
-	// int testDifficulty = kiko::Game::GetScore();
-	// int m_enemyDifficulty = 1; // (kiko::Game::GetScore() != (int)nullptr && (kiko::Game::GetScore() % 1000) != 0) ? kiko::Game::GetScore() % 1000 : 1; // % 1000;
 	int m_enemyDifficulty = (spaceGame.GetScore() / 1000) != 0 ? spaceGame.GetScore() / 1000 : 1;
 	float m_health = 20.0f * m_enemyDifficulty;
 

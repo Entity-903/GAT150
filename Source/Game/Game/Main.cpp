@@ -109,7 +109,8 @@ int main(int argc, char* argv[])
 	kiko::Transform transform{ { 400, 300 }, 0, 3};
 
 	// Create Texture
-	kiko::res_t<kiko::Texture> texture = kiko::g_resources.Get<kiko::Texture>("JoeBiden.jpg", kiko::g_renderer);
+	//kiko::res_t<kiko::Texture> texture = kiko::g_resources.Get<kiko::Texture>("JoeBiden.jpg", kiko::g_renderer);
+
 
 	// Main Game Loop
 	bool quit = false;
@@ -123,13 +124,6 @@ int main(int argc, char* argv[])
 		{
 			quit = true;
 		}
-
-		//cout << "Current Mouse Position: " << kiko::g_inputSystem.GetMousePosition().x << " " << kiko::g_inputSystem.GetMousePosition().y << endl;
-		//if (inputSystem.GetMouseButtonDown(0)) { cout << "Left Mouse Pressed" << endl; }
-		//if (inputSystem.GetMouseButtonDown(1)) { cout << "Middle Mouse Pressed" << endl; }
-		//if (inputSystem.GetMouseButtonDown(2)) { cout << "Right Mouse Pressed" << endl; }
-
-		//position += direction * speed * kiko::g_time.GetDeltaTime();;
 
 		// Update game
 		game->Update(kiko::g_time.GetDeltaTime());
@@ -146,9 +140,6 @@ int main(int argc, char* argv[])
 		// Draw game
 		kiko::g_renderer.SetColor(0, 0, 0, 0);
 		kiko::g_renderer.BeginFrame();
-
-		// Draw Joe Biden
-		kiko::g_renderer.DrawTexture(texture.get(), 200.0f, 200.0f, 0.0f);
 
 		//text->Draw(kiko::g_renderer, 400, 300);
 

@@ -30,7 +30,7 @@ namespace kiko
 	}
 	vec2 Texture::GetSize()
 	{
-		ASSERT_LOG(m_texture != NULL, "Texture is NULL!")
+		ASSERT_LOG(m_texture != NULL, "Texture is NULL!");
 		SDL_Point point;
 		SDL_QueryTexture(m_texture, NULL, NULL, &point.x, &point.y);
 
@@ -38,11 +38,16 @@ namespace kiko
 	}
 	bool Texture::Create(std::string filename, ...)
 	{
+		// va_list - Type to hold information about variable arguments
 		va_list args;
+
+		// va_start - Enables access to variadic function arguments
 		va_start(args, filename);
 
+		// va_arg - accesses the next variadic function arguments
 		Renderer& renderer = va_arg(args, Renderer);
 
+		// va_end - Ends traversal of the variadic function arguments
 		va_end(args);
 
 		return Load(filename, renderer);

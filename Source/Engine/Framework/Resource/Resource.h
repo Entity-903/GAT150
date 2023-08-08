@@ -10,8 +10,6 @@ namespace kiko
 		virtual ~Resource() = default;
 
 		virtual bool Create(std::string filename, ...) = 0;
-	private:
-		
 	};
 
 	template <typename T>

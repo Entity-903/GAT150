@@ -17,6 +17,8 @@ bool kiko::Font::Create(std::string filename, ...)
 	va_list args;
 
 	va_start(args, filename);
+
+	// va_arg - Accesses the next variadic funtion arguments
 	int fontSize = va_arg(args, int);
 	va_end(args);
 
