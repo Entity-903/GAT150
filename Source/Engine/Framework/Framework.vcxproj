@@ -152,6 +152,7 @@
     <ClInclude Include="Components\RenderComponent.h" />
     <ClInclude Include="Component\SpriteComponent.h" />
     <ClInclude Include="Emitter.h" />
+    <ClInclude Include="Framework.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Resource\Resource.h" />
     <ClInclude Include="Resource\ResourceManager.h" />

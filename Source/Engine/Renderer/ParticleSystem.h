@@ -16,7 +16,7 @@ namespace kiko
 		}
 
 		void Update(float dt);
-		void Draw(Renderer& renderer);
+		void Draw(class Renderer& renderer);
 
 		Particle* GetFreeParticle();
 

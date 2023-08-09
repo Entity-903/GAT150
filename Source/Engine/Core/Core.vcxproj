@@ -170,6 +170,7 @@
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="MathUtils.h" />
+    <ClInclude Include="Math\Vector3.h" />
     <ClInclude Include="Memory.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Time.h" />

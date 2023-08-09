@@ -2,16 +2,12 @@
 #include "Player.h"
 #include "Enemy.h"
 
-#include "Framework/Scene.h"
-#include "Framework/Resource/ResourceManager.h"
-#include "Framework/Component/SpriteComponent.h"
-#include "Framework/Components/EnginePhysicsComponent.h"
+#include "Framework/Framework.h"
 
 #include "Audio/AudioSystem.h"
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
 #include "Renderer/Text.h"
-#include "Renderer/ModelManager.h"
 
 bool SpaceGame::Initialize()
 {

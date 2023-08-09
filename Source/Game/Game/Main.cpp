@@ -1,16 +1,10 @@
 #include "Renderer/Renderer.h"
 #include "Core/Core.h"
-#include "Renderer/ModelManager.h"
 #include "Input/InputSystem.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "Audio/AudioSystem.h"
-#include "Framework/Scene.h"
-#include "Framework/Resource/ResourceManager.h"
-#include "Renderer/Font.h"
-#include "Renderer/Text.h"
-#include "Renderer/ParticleSystem.h"
-#include "Renderer/Texture.h"
+#include "Framework/Framework.h"
 
 #include "SpaceGame.h"
 
@@ -50,7 +44,7 @@ public:
 int main(int argc, char* argv[])
 {
 
-	INFO_LOG("Hello World");
+	INFO_LOG("Initialize Engine...");
 
 	kiko::MemoryTracker::Initialize();
 	kiko::seedRandom((unsigned int)time(nullptr));

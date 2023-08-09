@@ -1,10 +1,7 @@
 #pragma once
 
-#include "Core/Vector2.h"
-#include "Core/Color.h"
-
-//#include "Renderer/ParticleSystem.h"
-//#include "Renderer.h"
+#include "Core/Math/Vector2.h"
+#include "Core/Math/Color.h"
 
 namespace kiko
 {

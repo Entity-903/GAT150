@@ -6,7 +6,6 @@
 #include "Framework/Component/SpriteComponent.h"
 #include "Framework/Resource/ResourceManager.h"
 #include "Renderer/Renderer.h"
-#include "Renderer/ModelManager.h"
 #include "Audio/AudioSystem.h"
 #include "Framework/Actor.h"
 #include "Weapon.h"

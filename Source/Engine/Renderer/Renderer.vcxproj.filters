@@ -13,9 +13,6 @@
     <ClCompile Include="Model.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="ModelManager.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Font.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -37,9 +34,6 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Model.h" />
-    <ClInclude Include="ModelManager.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Font.h">
       <Filter>Source</Filter>
     </ClInclude>

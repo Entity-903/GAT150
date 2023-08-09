@@ -7,7 +7,6 @@
 #include "Framework/Components/PhysicsComponent.h"
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
-#include "Renderer/ModelManager.h"
 
 void Player::Update(float dt)
 {

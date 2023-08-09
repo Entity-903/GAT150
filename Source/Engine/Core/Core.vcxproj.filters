@@ -5,6 +5,9 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Source\Math">
+      <UniqueIdentifier>{7a5a4a76-c521-4361-b915-450fbd26f49b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FileIO.cpp">
@@ -30,26 +33,29 @@
     <ClInclude Include="Random.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Core.h">
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Time.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="MathUtils.h">
+    <ClInclude Include="Logger.h">
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Color.h">
-      <Filter>Source</Filter>
+      <Filter>Source\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Logger.h">
-      <Filter>Source</Filter>
+    <ClInclude Include="MathUtils.h">
+      <Filter>Source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector3.h">
+      <Filter>Source\Math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
