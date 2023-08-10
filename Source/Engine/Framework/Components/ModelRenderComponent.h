@@ -10,6 +10,6 @@ namespace kiko
 		void Update(float dt);
 		void Draw(Renderer& renderer);
 	public:
-		//res_t<Model> model;
+		res_t<Model> m_model;
 	};
 }
