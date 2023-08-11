@@ -41,6 +41,7 @@ namespace kiko
 		int GetHeight() const { return m_height; }
 
 		void DrawTexture(class Texture* texture, float x, float y, float angle = 0.0f);
+		void DrawTexture(class Texture* texture, const Transform& transform);
 
 		friend class Text;
 		friend class Texture;
