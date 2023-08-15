@@ -14,7 +14,7 @@ namespace kiko
 		SDL_Surface* surface = IMG_Load(filename.c_str());
 		if (!surface)
 		{
-			WARNING_LOG("No Surface Provided!")
+			WARNING_LOG("No Surface Provided! Couldn't Load: " << filename.c_str());
 			return false;
 		}
 
@@ -30,7 +30,7 @@ namespace kiko
 	}
 	vec2 Texture::GetSize()
 	{
-		ASSERT_LOG(m_texture != NULL, "Texture is NULL!");
+		ASSERT_LOG(m_texture != NULL, "Missing Texture!");
 		SDL_Point point;
 		SDL_QueryTexture(m_texture, NULL, NULL, &point.x, &point.y);
 

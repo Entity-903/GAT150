@@ -27,8 +27,8 @@ namespace kiko
 		{
 			mat3 ms = mat3::CreateScale(scale);
 			mat3 mr = mat3::CreateRotation(rotation);
-			mat3 mt = mat3::CreateTranslation(rotation);
-			mat3 mx = mt* ms * mr;
+			mat3 mt = mat3::CreateTranslation(position);
+			mat3 mx = mt * ms * mr;
 
 			//mat2 mx = ms * mr;
 

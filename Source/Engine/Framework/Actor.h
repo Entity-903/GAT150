@@ -1,5 +1,7 @@
 #pragma once
-#include "Core/Core.h"
+#include "Object.h"
+//#include "Core/Core.h"
+#include "Renderer/Renderer.h"
 #include "Renderer/Model.h"
 #include "Components/Component.h"
 
@@ -7,13 +9,16 @@
 
 namespace kiko
 {
-class Actor
+class Actor : public Object
 {
 public:
 	Actor() = default;
 	Actor(const kiko::Transform& transform) :
 		m_transform{ transform }
 	{}
+
+	virtual bool Initialize() override;
+	virtual void OnDestroy() override;
 
 	virtual void Update(float dt);
 	virtual void Draw(kiko::Renderer& renderer);
@@ -39,11 +44,6 @@ protected:
 	std::vector<std::unique_ptr<Component>> m_components;
 
 	bool m_destroyed = false;
-
-	//std::shared_ptr<Model> m_model;
-
-	//vec2 m_velocity;
-	//float m_damping = 0;
 };
 template<typename T>
 inline T* Actor::GetComponent()

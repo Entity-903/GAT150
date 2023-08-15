@@ -1,3 +1,4 @@
+//#include "Core/Json.h"
 #include "Renderer/Renderer.h"
 #include "Core/Core.h"
 #include "Input/InputSystem.h"
@@ -43,12 +44,42 @@ public:
 
 int main(int argc, char* argv[])
 {
+	kiko::Factory::Instance().Register<kiko::SpriteComponent>("SpriteComponent");
 
 	INFO_LOG("Initialize Engine...");
 
 	kiko::MemoryTracker::Initialize();
 	kiko::seedRandom((unsigned int)time(nullptr));
 	kiko::setFilePath("assets");
+
+	rapidjson::Document document;
+	kiko::Json::Load("json.txt", document);
+	
+
+	int i1;
+	kiko::Json::Read(document, "integer1", i1);
+	std::cout << i1 << std::endl;
+
+	int i2;
+	kiko::Json::Read(document, "integer2", i2);
+	std::cout << i2 << std::endl;
+
+	std::string str;
+	kiko::Json::Read("json.txt", &str, );
+	std::cout << str << std::endl;
+	// static bool Read(const rapidjson::Value& value, const std::string& name, int& data, bool required = false);
+
+	bool b;
+	kiko::Json::Read("json.txt", &b, );
+	std::cout << b << std::endl;
+	// static bool Read(const rapidjson::Value & value, const std::string & name, bool& data, bool required = false);
+
+	float f;
+	kiko::Json::Read("json.txt", &f, &);
+	std::cout << f << std::endl;
+
+	kiko::vec2 v2;
+	kiko::Json::Read("json.txt", &v2, &);
 
 	// Engine Initialization
 	kiko::g_renderer.Initialize();

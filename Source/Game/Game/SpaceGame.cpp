@@ -9,17 +9,20 @@
 #include "Renderer/Renderer.h"
 #include "Renderer/Text.h"
 
+// Vector3.h Needs More Work!!!
+
+
 bool SpaceGame::Initialize()
 {
 	// Create Font / Text Objects
-	//m_font = kiko::g_resources.Get<kiko::Font>("EmptyMegazineDemoRegular.ttf", 24); //std::make_shared<kiko::Font>("EmptyMegazineDemoRegular.ttf", 24);
-	m_scoreText = std::make_unique<kiko::Text>(kiko::g_resources.Get<kiko::Font>("EmptyMegazineDemoRegular.ttf", 24));
+	//m_font = GET_RESOURCE(kiko::Font, "EmptyMegazineDemoRegular.ttf", 24); //std::make_shared<kiko::Font>("EmptyMegazineDemoRegular.ttf", 24);
+	m_scoreText = std::make_unique<kiko::Text>(GET_RESOURCE(kiko::Font, "EmptyMegazineDemoRegular.ttf", 24));
 	m_scoreText->Create(kiko::g_renderer, "SCORE 0000", kiko::Color{ 1, 0, 1, 1 });
 
-	m_titleText = std::make_unique<kiko::Text>(kiko::g_resources.Get<kiko::Font>("EmptyMegazineDemoRegular.ttf", 24));
+	m_titleText = std::make_unique<kiko::Text>(GET_RESOURCE(kiko::Font, "EmptyMegazineDemoRegular.ttf", 24));
 	m_titleText->Create(kiko::g_renderer, "Asteroids", kiko::Color{ 1, 1, 1, 1 });
 
-	m_gameoverText = std::make_unique<kiko::Text>(kiko::g_resources.Get<kiko::Font>("EmptyMegazineDemoRegular.ttf", 24));
+	m_gameoverText = std::make_unique<kiko::Text>(GET_RESOURCE(kiko::Font, "EmptyMegazineDemoRegular.ttf", 24));
 	m_gameoverText->Create(kiko::g_renderer, "Game Over", kiko::Color{ 1, 1, 1, 1 });
 
 	// Load Audio
@@ -58,18 +61,24 @@ void SpaceGame::Update(float dt)
 		m_scene->RemoveAll();
 
 		// Create Player
-		std::unique_ptr<Player> player = std::make_unique<Player>(20.0f, kiko::Pi, kiko::Transform{ { 400, 300 }, 0, 1 });
+		std::unique_ptr<Player> player = std::make_unique<Player>(20.0f, kiko::Pi, kiko::Transform{ { 400, 300 }, 0, 0.75f });
 		player->m_tag = "Player";
 		player->m_game = this;
+
 		// Create Components
-		auto renderComponent = std::make_unique<kiko::SpriteComponent>();
-		renderComponent->m_texture = kiko::g_resources.Get<kiko::Texture>("JoeBiden.jpg", kiko::g_renderer); // "Ship.txt" 
+		auto renderComponent = kiko::Factory::Instance().Create<kiko::SpriteComponent>("SpriteComponent"); //std::make_unique<kiko::SpriteComponent>();
+		renderComponent->m_texture = GET_RESOURCE(kiko::Texture, "JoeBiden.jpg", kiko::g_renderer); // "Ship.txt" 
 		player->AddComponent(std::move(renderComponent));
 
 		auto physicsComponent = std::make_unique<kiko::EnginePhysicsComponent>();
 		physicsComponent->m_damping = 0.9f;
 		player->AddComponent(std::move(physicsComponent));
 
+		auto collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
+		collisionComponent->m_radius = 30.0f;
+		player->AddComponent(std::move(collisionComponent));
+
+		player->Initialize();
 		m_scene->Add(std::move(player));
 	}
 	m_state = eState::Game;
@@ -79,14 +88,20 @@ void SpaceGame::Update(float dt)
 		if (m_spawnTimer >= m_spawnTime)
 		{
 			m_spawnTimer = 0.0f;
-			std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(kiko::randomf(75.0f, 150.0f), kiko::Pi, kiko::Transform{ {kiko::randomf((float)kiko::g_renderer.GetWidth()), kiko::randomf((float)kiko::g_renderer.GetHeight())}, kiko::randomf(kiko::TwoPi), 3}, *this);
+			std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(kiko::randomf(75.0f, 150.0f), kiko::Pi, kiko::Transform{ {kiko::randomf((float)kiko::g_renderer.GetWidth()), kiko::randomf((float)kiko::g_renderer.GetHeight())}, kiko::randomf(kiko::TwoPi), 0.5f}, *this);
 			enemy->m_tag = "Enemy";
 			enemy->m_game = this;
+
 			// Create Components
 			auto renderComponent = std::make_unique<kiko::SpriteComponent>();
-			renderComponent->m_texture = kiko::g_resources.Get<kiko::Texture>("DonaldTrump.jpg", kiko::g_renderer);
+			renderComponent->m_texture = GET_RESOURCE(kiko::Texture, "DonaldTrump.jpg", kiko::g_renderer);
 			enemy->AddComponent(std::move(renderComponent));
 
+			auto collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
+			collisionComponent->m_radius = 30.0f;
+			enemy->AddComponent(std::move(collisionComponent));
+
+			enemy->Initialize();
 			m_scene->Add(std::move(enemy));
 		}
 		break;

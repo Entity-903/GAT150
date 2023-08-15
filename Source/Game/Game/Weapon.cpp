@@ -1,5 +1,13 @@
 #include "Weapon.h"
 #include "Renderer/Renderer.h"
+#include "Framework/Framework.h"
+
+bool Weapon::Initialize()
+{
+	Actor::Initialize();
+
+	return true;
+}
 
 void Weapon::Update(float dt)
 {

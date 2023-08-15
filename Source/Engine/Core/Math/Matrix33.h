@@ -19,6 +19,7 @@ namespace kiko
 		{
 			rows[0] = row1;
 			rows[1] = row2;
+			rows[2] = row3;
 		}
 
 		vec3  operator [] (size_t index) const { return rows[index]; }
@@ -59,11 +60,10 @@ namespace kiko
 		// | g h i |   | g h i |
 
 		Matrix33 result;
+
 		result[0][0] = rows[0][0] * mx[0][0] + rows[0][1] * mx[1][0] + rows[0][2] * mx[2][0];
 		result[0][1] = rows[0][0] * mx[0][1] + rows[0][1] * mx[1][1] + rows[0][2] * mx[2][1];
 		result[0][2] = rows[0][0] * mx[0][2] + rows[0][1] * mx[1][2] + rows[0][2] * mx[2][2];
-
-		// In Progress ---------------------------------------------------------------------
 
 		result[1][0] = rows[1][0] * mx[0][0] + rows[1][1] * mx[1][0] + rows[1][2] * mx[2][0];
 		result[1][1] = rows[1][0] * mx[0][1] + rows[1][1] * mx[1][1] + rows[1][2] * mx[2][1];

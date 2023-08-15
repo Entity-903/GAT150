@@ -1,14 +1,20 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "SpaceGame.h"
-#include "Framework/Emitter.h"
-#include "Framework/Scene.h"
-#include "Framework/Component/SpriteComponent.h"
-#include "Framework/Resource/ResourceManager.h"
+#include "Framework/Framework.h"
+//#include "Framework/Emitter.h"
+//#include "Framework/Scene.h"
+//#include "Framework/Component/SpriteComponent.h"
+//#include "Framework/Resource/ResourceManager.h"
 #include "Renderer/Renderer.h"
 #include "Audio/AudioSystem.h"
 #include "Framework/Actor.h"
 #include "Weapon.h"
+
+bool Enemy::Initialize()
+{
+	return true;
+}
 
 void Enemy::Update(float dt)
 {
@@ -48,8 +54,12 @@ void Enemy::Update(float dt)
 			std::unique_ptr<Weapon> weapon1 = std::make_unique<Weapon>(400.0f, transform1);
 			weapon1->m_tag = "Enemy";
 
+			auto collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
+			collisionComponent->m_radius = 30.0f;
+			weapon1->AddComponent(std::move(collisionComponent));
+
 			std::unique_ptr<kiko::SpriteComponent> component = std::make_unique<kiko::SpriteComponent>();
-			component->m_texture = kiko::g_resources.Get<kiko::Texture>("SpaceProjectile.png", kiko::g_renderer);
+			component->m_texture = GET_RESOURCE(kiko::Texture, "SpaceProjectile.png", kiko::g_renderer);
 			weapon1->AddComponent(std::move(component));
 
 			m_scene->Add(std::move(weapon1));
@@ -60,8 +70,12 @@ void Enemy::Update(float dt)
 				std::unique_ptr<Weapon> weapon2 = std::make_unique<Weapon>(400.0f, transform2);
 				weapon2->m_tag = "Enemy";
 
+				auto collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
+				collisionComponent->m_radius = 30.0f;
+				weapon2->AddComponent(std::move(collisionComponent));
+
 				std::unique_ptr<kiko::SpriteComponent> component = std::make_unique<kiko::SpriteComponent>();
-				component->m_texture = kiko::g_resources.Get<kiko::Texture>("SpaceProjectile.png", kiko::g_renderer);
+				component->m_texture = GET_RESOURCE(kiko::Texture, "SpaceProjectile.png", kiko::g_renderer);
 				weapon2->AddComponent(std::move(component));
 
 				m_scene->Add(std::move(weapon2));
@@ -70,8 +84,12 @@ void Enemy::Update(float dt)
 				std::unique_ptr<Weapon> weapon3 = std::make_unique<Weapon>(400.0f, transform3);
 				weapon3->m_tag = "Enemy";
 
+				collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
+				collisionComponent->m_radius = 30.0f;
+				weapon3->AddComponent(std::move(collisionComponent));
+
 				component = std::make_unique<kiko::SpriteComponent>();
-				component->m_texture = kiko::g_resources.Get<kiko::Texture>("SpaceProjectile.png", kiko::g_renderer);
+				component->m_texture = GET_RESOURCE(kiko::Texture, "SpaceProjectile.png", kiko::g_renderer);
 				weapon3->AddComponent(std::move(component));
 
 				m_scene->Add(std::move(weapon3));
