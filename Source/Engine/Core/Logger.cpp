@@ -4,7 +4,6 @@
 
 namespace kiko
 {
-	Logger g_logger(LogLevel::Info, &std::cout, "log.txt");
 
 	bool Logger::Log(LogLevel logLevel, const std::string& filename, int line)
 	{

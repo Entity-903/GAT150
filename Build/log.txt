@@ -1,2 +1,9 @@
-INFO: Factory.h(51) Class Registered: SpriteComponent
+INFO: Factory.h(52) Class Registered: SpriteComponent
+INFO: Factory.h(52) Class Registered: ModelRenderComponent
+INFO: Factory.h(52) Class Registered: EnginePhysicsComponent
+INFO: Factory.h(52) Class Registered: CircleCollisionComponent
+INFO: Factory.h(52) Class Registered: Actor
+INFO: Factory.h(52) Class Registered: SpriteComponent
 INFO: Main.cpp(48) Initialize Engine...
+WARNING: Texture.cpp(17) No Surface Provided! Couldn't Load: 
+ASSERT: Texture.cpp(33) Missing Texture!

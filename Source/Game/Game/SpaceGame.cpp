@@ -62,7 +62,7 @@ void SpaceGame::Update(float dt)
 
 		// Create Player
 		std::unique_ptr<Player> player = std::make_unique<Player>(20.0f, kiko::Pi, kiko::Transform{ { 400, 300 }, 0, 0.25f });
-		player->m_tag = "Player";
+		player->tag = "Player";
 		player->m_game = this;
 
 		// Create Components
@@ -89,7 +89,7 @@ void SpaceGame::Update(float dt)
 		{
 			m_spawnTimer = 0.0f;
 			std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(kiko::randomf(75.0f, 150.0f), kiko::Pi, kiko::Transform{ {kiko::randomf((float)kiko::g_renderer.GetWidth()), kiko::randomf((float)kiko::g_renderer.GetHeight())}, kiko::randomf(kiko::TwoPi), 0.5f}, *this);
-			enemy->m_tag = "Enemy";
+			enemy->tag = "Enemy";
 			enemy->m_game = this;
 
 			// Create Components

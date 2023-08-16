@@ -16,7 +16,7 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Weapon.cpp">
+    <ClCompile Include="WeaponComponent.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="SpaceGame.cpp">
@@ -30,7 +30,7 @@
     <ClInclude Include="Enemy.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Weapon.h">
+    <ClInclude Include="WeaponComponent.h">
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="SpaceGame.h">
