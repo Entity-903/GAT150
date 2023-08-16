@@ -1,8 +1,6 @@
 #pragma once
 #include "Object.h"
-//#include "Core/Core.h"
 #include "Renderer/Renderer.h"
-#include "Renderer/Model.h"
 #include "Components/Component.h"
 
 #include <memory>
@@ -11,6 +9,7 @@ namespace kiko
 {
 class Actor : public Object
 {
+
 public:
 	Actor() = default;
 	Actor(const kiko::Transform& transform) :
@@ -39,6 +38,8 @@ public:
 	kiko::Transform m_transform;
 	std::string m_tag;
 	float m_lifespan = -1.0f;
+
+	CLASS_DECLARATION(Actor)
 
 protected:
 	std::vector<std::unique_ptr<Component>> m_components;

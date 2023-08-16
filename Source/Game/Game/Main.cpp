@@ -1,4 +1,3 @@
-//#include "Core/Json.h"
 #include "Renderer/Renderer.h"
 #include "Core/Core.h"
 #include "Input/InputSystem.h"
@@ -64,22 +63,24 @@ int main(int argc, char* argv[])
 	kiko::Json::Read(document, "integer2", i2);
 	std::cout << i2 << std::endl;
 
+	// Ask about what to pass in for data parameter...
 	std::string str;
-	kiko::Json::Read("json.txt", &str, );
+	kiko::Json::Read(document, "string", str);
 	std::cout << str << std::endl;
-	// static bool Read(const rapidjson::Value& value, const std::string& name, int& data, bool required = false);
+	// static bool Read(const rapidjson::Value& value, const std::string& name, string& data, bool required = false);
 
 	bool b;
-	kiko::Json::Read("json.txt", &b, );
+	kiko::Json::Read(document, "boolean", b);
 	std::cout << b << std::endl;
 	// static bool Read(const rapidjson::Value & value, const std::string & name, bool& data, bool required = false);
 
 	float f;
-	kiko::Json::Read("json.txt", &f, &);
+	kiko::Json::Read(document, "float", f);
 	std::cout << f << std::endl;
 
 	kiko::vec2 v2;
-	kiko::Json::Read("json.txt", &v2, &);
+	kiko::Json::Read(document, "vector2", v2);
+	std::cout << v2 << std::endl;
 
 	// Engine Initialization
 	kiko::g_renderer.Initialize();

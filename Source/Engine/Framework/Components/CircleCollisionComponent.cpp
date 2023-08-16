@@ -3,6 +3,8 @@
 
 namespace kiko
 {
+    CLASS_DEFINITION(CircleCollisionComponent)
+
     void kiko::CircleCollisionComponent::Update(float dt)
     {
 

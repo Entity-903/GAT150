@@ -141,6 +141,7 @@
     <ClCompile Include="Components\ModelRenderComponent.cpp" />
     <ClCompile Include="Component\SpriteComponent.cpp" />
     <ClCompile Include="Emitter.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="Scene.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -2,12 +2,18 @@
 #include "Renderer/Renderer.h"
 #include "Framework/Actor.h"
 
-void kiko::SpriteComponent::Update(float dt)
-{
 
-}
-
-void kiko::SpriteComponent::Draw(Renderer& renderer)
+namespace kiko
 {
-	renderer.DrawTexture(m_texture.get(), m_owner->m_transform);
+	CLASS_DEFINITION(SpriteComponent)
+
+	void kiko::SpriteComponent::Update(float dt)
+	{
+		//
+	}
+
+	void kiko::SpriteComponent::Draw(Renderer& renderer)
+	{
+		renderer.DrawTexture(m_texture.get(), m_owner->m_transform);
+	}
 }

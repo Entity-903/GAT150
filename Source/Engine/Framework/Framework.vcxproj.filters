@@ -32,6 +32,9 @@
       <Filter>Source\Components</Filter>
     </ClCompile>
     <ClCompile Include="Components\CircleCollisionComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

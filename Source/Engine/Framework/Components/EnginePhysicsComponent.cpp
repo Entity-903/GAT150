@@ -3,6 +3,8 @@
 
 namespace kiko
 {
+	CLASS_DEFINITION(EnginePhysicsComponent)
+
 	void EnginePhysicsComponent::Update(float dt)
 	{
 		m_owner->m_transform.position += m_velocity * dt;

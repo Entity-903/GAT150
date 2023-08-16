@@ -61,20 +61,20 @@ void SpaceGame::Update(float dt)
 		m_scene->RemoveAll();
 
 		// Create Player
-		std::unique_ptr<Player> player = std::make_unique<Player>(20.0f, kiko::Pi, kiko::Transform{ { 400, 300 }, 0, 0.75f });
+		std::unique_ptr<Player> player = std::make_unique<Player>(20.0f, kiko::Pi, kiko::Transform{ { 400, 300 }, 0, 0.25f });
 		player->m_tag = "Player";
 		player->m_game = this;
 
 		// Create Components
-		auto renderComponent = kiko::Factory::Instance().Create<kiko::SpriteComponent>("SpriteComponent"); //std::make_unique<kiko::SpriteComponent>();
+		auto renderComponent = CREATE_CLASS(SpriteComponent)
 		renderComponent->m_texture = GET_RESOURCE(kiko::Texture, "JoeBiden.jpg", kiko::g_renderer); // "Ship.txt" 
 		player->AddComponent(std::move(renderComponent));
 
-		auto physicsComponent = std::make_unique<kiko::EnginePhysicsComponent>();
+		auto physicsComponent = CREATE_CLASS(EnginePhysicsComponent)
 		physicsComponent->m_damping = 0.9f;
 		player->AddComponent(std::move(physicsComponent));
 
-		auto collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
+		auto collisionComponent = CREATE_CLASS(CircleCollisionComponent)
 		collisionComponent->m_radius = 30.0f;
 		player->AddComponent(std::move(collisionComponent));
 
@@ -93,11 +93,11 @@ void SpaceGame::Update(float dt)
 			enemy->m_game = this;
 
 			// Create Components
-			auto renderComponent = std::make_unique<kiko::SpriteComponent>();
+			auto renderComponent = CREATE_CLASS(SpriteComponent)
 			renderComponent->m_texture = GET_RESOURCE(kiko::Texture, "DonaldTrump.jpg", kiko::g_renderer);
 			enemy->AddComponent(std::move(renderComponent));
 
-			auto collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
+			auto collisionComponent = CREATE_CLASS(CircleCollisionComponent)
 			collisionComponent->m_radius = 30.0f;
 			enemy->AddComponent(std::move(collisionComponent));
 

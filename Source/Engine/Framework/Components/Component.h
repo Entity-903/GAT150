@@ -3,8 +3,7 @@
 
 namespace kiko
 {
-	class
-		Component : public Object
+	class Component : public Object
 	{
 	public:
 		virtual void Update(float dt) = 0;
