@@ -59,10 +59,12 @@ void Player::Update(float dt)
 	{
 		// Create Weapon
 		//if (m_score)
-		// 
+		
+		
+		
 		// Weapon 1
 		kiko::Transform transform1{ transform.position, transform.rotation, 1};
-		std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(400.0f, transform1); 
+		std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(400.0f, transform1);
 		weapon->tag = "Player";
 
 		auto collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
@@ -108,12 +110,14 @@ void Player::Update(float dt)
 		component->m_texture = GET_RESOURCE(kiko::Texture, "SpaceProjectile.png", kiko::g_renderer);
 		weapon->AddComponent(std::move(component));
 
-		// - Complains about not being able to access memory when including this - 
+		// - Complains about not being able to access memory when including this -
 
 		//component->m_texture = kiko::g_resources.Get<kiko::Texture>("SpaceProjectile.png", kiko::g_renderer);
 		//weapon->AddComponent(std::move(component));
 
 		m_scene->Add(std::move(weapon));
+		
+
 
 	}
 

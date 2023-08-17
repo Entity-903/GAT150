@@ -2,13 +2,8 @@
 #include "Player.h"
 #include "SpaceGame.h"
 #include "Framework/Framework.h"
-//#include "Framework/Emitter.h"
-//#include "Framework/Scene.h"
-//#include "Framework/Component/SpriteComponent.h"
-//#include "Framework/Resource/ResourceManager.h"
 #include "Renderer/Renderer.h"
 #include "Audio/AudioSystem.h"
-#include "Framework/Actor.h"
 #include "Weapon.h"
 
 bool Enemy::Initialize()
@@ -93,6 +88,7 @@ void Enemy::Update(float dt)
 				weapon3->AddComponent(std::move(component));
 
 				m_scene->Add(std::move(weapon3));
+				
 			}
 
 			kiko::g_audioSystem.PlayOneShot("Laser_Shoot");

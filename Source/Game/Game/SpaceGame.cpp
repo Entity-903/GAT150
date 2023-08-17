@@ -28,8 +28,10 @@ bool SpaceGame::Initialize()
 	// Load Audio
 	kiko::g_audioSystem.AddAudio("Laser_Shoot", "Laser_Shoot.wav");
 
-	// Load Scene
+	// Create Scene
 	m_scene = std::make_unique<kiko::Scene>();
+	m_scene->Load("Scene.json");
+	m_scene->Initialize();
 
 
 
