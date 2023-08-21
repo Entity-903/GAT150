@@ -1,17 +1,80 @@
 {
 	"actors":[
 		{
-			"type":"Actor",
-			"name":"Background",
+			"type": "Actor",
+			"name": "Background",
+			"persistent": true,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 3.5,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "SpriteComponent",
+					"textureName": "SpaceBackground.jpg"
+				}
+			]
+		},
+		{
+			"type": "Weapon",
+			"name": "PlayerBasicWeapon",
+			"prototype": true,
+			"lifespan": 2.0,
+			"tag": "Player",
 			"transform": {
 				"position": [ 400, 300 ],
 				"scale": 1,
 				"rotation": 0
 			},
+			"speed": 250.0,
 			"components": [
 				{
-					"type":"SpriteComponent",
-					"textureName": "SpaceBackground.jpg"
+					"type": "SpriteComponent",
+					"textureName": "SpaceProjectile.png"
+				},
+				{
+					"type": "CircleCollisionComponent"
+				}
+			]
+		},
+		{
+			"type": "Weapon",
+			"name": "EnemyBasicWeapon",
+			"prototype": true,
+			"lifespan": 2.0,
+			"tag": "Enemy",
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 1,
+				"rotation": 0
+			},
+			"speed": 250.0,
+			"components": [
+				{
+					"type": "SpriteComponent",
+					"textureName": "SpaceProjectile.png"
+				},
+				{
+					"type": "CircleCollisionComponent"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Title",
+			"persistent": true,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 2,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "TextRenderComponent",
+					"fontName": "ArcadeClassic.ttf",
+					"fontSize": 24,
+					"text": "Asteroids"
 				}
 			]
 		}

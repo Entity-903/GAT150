@@ -8,6 +8,8 @@
 
 bool Enemy::Initialize()
 {
+	Actor::Initialize();
+
 	return true;
 }
 
@@ -44,48 +46,29 @@ void Enemy::Update(float dt)
 		{
 			m_fireTime = m_fireRate;
 
+
+			// Weapon 1
 			if (m_enemyDifficulty == 1 || m_enemyDifficulty >= 3) {
-			kiko::Transform transform1{ transform.position, transform.rotation, 1};
-			std::unique_ptr<Weapon> weapon1 = std::make_unique<Weapon>(400.0f, transform1);
-			weapon1->tag = "Enemy";
 
-			auto collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
-			collisionComponent->m_radius = 30.0f;
-			weapon1->AddComponent(std::move(collisionComponent));
+				auto weapon1 = INSTANTIATE(Weapon, "EnemyBasicWeapon");
+				weapon1->transform = { transform.position, transform.rotation, 1 };
+				weapon1->Initialize();
 
-			std::unique_ptr<kiko::SpriteComponent> component = std::make_unique<kiko::SpriteComponent>();
-			component->m_texture = GET_RESOURCE(kiko::Texture, "SpaceProjectile.png", kiko::g_renderer);
-			weapon1->AddComponent(std::move(component));
-
-			m_scene->Add(std::move(weapon1));
+				m_scene->Add(std::move(weapon1));
 			}
 
+			// Weapon 2
 			if (m_enemyDifficulty >= 2) {
-				kiko::Transform transform2{ transform.position, transform.rotation + kiko::DegreesToRadians(10.0f), 1};
-				std::unique_ptr<Weapon> weapon2 = std::make_unique<Weapon>(400.0f, transform2);
-				weapon2->tag = "Enemy";
-
-				auto collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
-				collisionComponent->m_radius = 30.0f;
-				weapon2->AddComponent(std::move(collisionComponent));
-
-				std::unique_ptr<kiko::SpriteComponent> component = std::make_unique<kiko::SpriteComponent>();
-				component->m_texture = GET_RESOURCE(kiko::Texture, "SpaceProjectile.png", kiko::g_renderer);
-				weapon2->AddComponent(std::move(component));
+				auto weapon2 = INSTANTIATE(Weapon, "EnemyBasicWeapon");
+				weapon2->transform = { transform.position, transform.rotation + kiko::DegreesToRadians(10.0f) , 1 };
+				weapon2->Initialize();
 
 				m_scene->Add(std::move(weapon2));
 
-				kiko::Transform transform3{ transform.position, transform.rotation - kiko::DegreesToRadians(10.0f), 1};
-				std::unique_ptr<Weapon> weapon3 = std::make_unique<Weapon>(400.0f, transform3);
-				weapon3->tag = "Enemy";
-
-				collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
-				collisionComponent->m_radius = 30.0f;
-				weapon3->AddComponent(std::move(collisionComponent));
-
-				component = std::make_unique<kiko::SpriteComponent>();
-				component->m_texture = GET_RESOURCE(kiko::Texture, "SpaceProjectile.png", kiko::g_renderer);
-				weapon3->AddComponent(std::move(component));
+			// Weapon 3
+				auto weapon3 = INSTANTIATE(Weapon, "EnemyBasicWeapon");
+				weapon3->transform = { transform.position, transform.rotation - kiko::DegreesToRadians(10.0f), 1 };
+				weapon3->Initialize();
 
 				m_scene->Add(std::move(weapon3));
 				
@@ -99,7 +82,7 @@ void Enemy::Update(float dt)
 void Enemy::OnCollision(Actor* other)
 {
 
-	if (dynamic_cast<Weapon*>(other) != nullptr && other->tag == "Player")
+	if (dynamic_cast<kiko::Weapon*>(other) != nullptr && other->tag == "Player")
 	{
 			m_health -= 10;
 			std::cout << m_health << "\n";
@@ -121,7 +104,7 @@ void Enemy::OnCollision(Actor* other)
 
 				data.color = kiko::Color{ 1, 0, 0, 1 };
 
-				kiko::Transform transform{ transform.position, 0, 1 };
+				kiko::Transform transform{ this->transform.position, 0, 1 };
 				auto emitter = std::make_unique<kiko::Emitter>(transform, data);
 				emitter->lifespan = 1.0f;
 				m_scene->Add(std::move(emitter));

@@ -16,13 +16,13 @@ bool SpaceGame::Initialize()
 {
 	// Create Font / Text Objects
 	//m_font = GET_RESOURCE(kiko::Font, "EmptyMegazineDemoRegular.ttf", 24); //std::make_shared<kiko::Font>("EmptyMegazineDemoRegular.ttf", 24);
-	m_scoreText = std::make_unique<kiko::Text>(GET_RESOURCE(kiko::Font, "EmptyMegazineDemoRegular.ttf", 24));
+	m_scoreText = std::make_unique<kiko::Text>(GET_RESOURCE(kiko::Font, "ArcadeClassic.ttf", 24));
 	m_scoreText->Create(kiko::g_renderer, "SCORE 0000", kiko::Color{ 1, 0, 1, 1 });
 
-	m_titleText = std::make_unique<kiko::Text>(GET_RESOURCE(kiko::Font, "EmptyMegazineDemoRegular.ttf", 24));
-	m_titleText->Create(kiko::g_renderer, "Asteroids", kiko::Color{ 1, 1, 1, 1 });
+	//m_titleText = std::make_unique<kiko::Text>(GET_RESOURCE(kiko::Font, "ArcadeClassic.ttf", 24));
+	//m_titleText->Create(kiko::g_renderer, "Asteroids", kiko::Color{ 1, 1, 1, 1 });
 
-	m_gameoverText = std::make_unique<kiko::Text>(GET_RESOURCE(kiko::Font, "EmptyMegazineDemoRegular.ttf", 24));
+	m_gameoverText = std::make_unique<kiko::Text>(GET_RESOURCE(kiko::Font, "ArcadeClassic.ttf", 24));
 	m_gameoverText->Create(kiko::g_renderer, "Game Over", kiko::Color{ 1, 1, 1, 1 });
 
 	// Load Audio
@@ -51,6 +51,7 @@ void SpaceGame::Update(float dt)
 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE))
 		{
 			this->m_state = eState::StartGame;
+			//auto actor = m_scene->GetActorByName("Background")->active;
 		}
 		break;
 	case SpaceGame::StartGame:
@@ -133,20 +134,16 @@ void SpaceGame::Update(float dt)
 	}
 
 	
-	m_scoreText->Create(kiko::g_renderer, "SCORE: " + std::to_string(m_score), {1, 1, 1, 1});
+	m_scoreText->Create(kiko::g_renderer, "SCORE " + std::to_string(m_score), {1, 1, 1, 1});
 	m_scene->Update(dt);
 }
 
 void SpaceGame::Draw(kiko::Renderer& renderer)
 {
-	if (m_state == eState::Title)
-	{
-		m_titleText->Draw(renderer, 400, 300);
-	}
+	m_scene->Draw(renderer);
 	if (m_state == eState::GameOver)
 	{
 		m_gameoverText->Draw(renderer, 400, 300);
 	}
 	m_scoreText->Draw(renderer, 40, 40);
-	m_scene->Draw(renderer);
 }

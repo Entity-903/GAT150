@@ -37,6 +37,9 @@
     <ClCompile Include="Object.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Components\TextRenderComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
@@ -92,6 +95,9 @@
     </ClInclude>
     <ClInclude Include="Factory.h">
       <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\TextRenderComponent.h">
+      <Filter>Source\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

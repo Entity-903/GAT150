@@ -7,6 +7,7 @@
 #include "Framework/Components/PhysicsComponent.h"
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
+//#include "Framework/Factory.h"
 
 #include "Framework/Components/CircleCollisionComponent.h"
 
@@ -57,68 +58,35 @@ void Player::Update(float dt)
 	if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE) &&
 		!kiko::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_SPACE))
 	{
+
 		// Create Weapon
 		//if (m_score)
 		
 		
+		// All player's weapons
 		
 		// Weapon 1
-		kiko::Transform transform1{ transform.position, transform.rotation, 1};
-		std::unique_ptr<Weapon> weapon = std::make_unique<Weapon>(400.0f, transform1);
-		weapon->tag = "Player";
+		auto weapon1 = INSTANTIATE(Weapon, "PlayerBasicWeapon");
+		weapon1->transform = { transform.position, transform.rotation, 1 };
+		weapon1->Initialize();
 
-		auto collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
-		collisionComponent->m_radius = 30.0f;
-		weapon->AddComponent(std::move(collisionComponent));
-
-		std::unique_ptr<kiko::SpriteComponent> component = std::make_unique<kiko::SpriteComponent>();
-		component->m_texture = GET_RESOURCE(kiko::Texture, "SpaceProjectile.png", kiko::g_renderer);
-		weapon->AddComponent(std::move(component));
-
-		m_scene->Add(std::move(weapon));
+		m_scene->Add(std::move(weapon1));
 
 		// Weapon 2
 
-		kiko::Transform transform2{ transform.position, transform.rotation - kiko::DegreesToRadians(10.0f), 1};
-		weapon = std::make_unique<Weapon>(400.0f, transform2);
-		weapon->tag = "Player";
+		auto weapon2 = INSTANTIATE(Weapon, "PlayerBasicWeapon");
+		weapon2->transform = { transform.position, transform.rotation + kiko::DegreesToRadians(10.0f), 1 };
+		weapon2->Initialize();
 
-		collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
-		collisionComponent->m_radius = 30.0f;
-		weapon->AddComponent(std::move(collisionComponent));
-
-		component = std::make_unique<kiko::SpriteComponent>();
-		component->m_texture = GET_RESOURCE(kiko::Texture, "SpaceProjectile.png", kiko::g_renderer);
-		weapon->AddComponent(std::move(component));
-
-		//component->m_texture = kiko::g_resources.Get<kiko::Texture>("SpaceProjectile.png", kiko::g_renderer);
-		//weapon->AddComponent(std::move(component));
-
-		m_scene->Add(std::move(weapon));
+		m_scene->Add(std::move(weapon2));
 
 		// Weapon 3
 
-		kiko::Transform transform3{ transform.position, transform.rotation + kiko::DegreesToRadians(10.0f), 1};
-		weapon = std::make_unique<Weapon>(400.0f, transform3);
-		weapon->tag = "Player";
+		auto weapon3 = INSTANTIATE(Weapon, "PlayerBasicWeapon");
+		weapon3->transform = { transform.position, transform.rotation - kiko::DegreesToRadians(10.0f), 1 };
+		weapon3->Initialize();
 
-		collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
-		collisionComponent->m_radius = 30.0f;
-		weapon->AddComponent(std::move(collisionComponent));
-
-		component = std::make_unique<kiko::SpriteComponent>();
-		component->m_texture = GET_RESOURCE(kiko::Texture, "SpaceProjectile.png", kiko::g_renderer);
-		weapon->AddComponent(std::move(component));
-
-		// - Complains about not being able to access memory when including this -
-
-		//component->m_texture = kiko::g_resources.Get<kiko::Texture>("SpaceProjectile.png", kiko::g_renderer);
-		//weapon->AddComponent(std::move(component));
-
-		m_scene->Add(std::move(weapon));
-		
-
-
+		m_scene->Add(std::move(weapon3));
 	}
 
 	if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_T)) kiko::g_time.SetTimeScale(0.5f);
@@ -127,7 +95,7 @@ void Player::Update(float dt)
 
 void Player::OnCollision(Actor* other)
 {
-	if (dynamic_cast<Weapon*>(other) != nullptr && other->tag == "Enemy")
+	if (dynamic_cast<kiko::Weapon*>(other) != nullptr && other->tag == "Enemy")
 	{
 		m_health -= 10;
 		std::cout << m_health << "\n";

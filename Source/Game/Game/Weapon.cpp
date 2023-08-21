@@ -3,14 +3,18 @@
 #include "Framework/Framework.h"
 
 
-//namespace kiko
-//{
+namespace kiko
+{
+	CLASS_DEFINITION(Weapon);
+
 	bool Weapon::Initialize()
 	{
+		Actor::Initialize();
+
 		//auto collisionComponent = GetComponent<kiko::CollisionComponent>(kiko::CollisionComponent);
 		// if (collisionComponent)
 		//{
-		//	
+		//	auto renderComponent = GetComponent<kiko::CollisionComponent>()
 		//}
 
 		return true;
@@ -36,6 +40,8 @@
 
 	void Weapon::Read(const kiko::json_t& value)
 	{
+		Actor::Read(value);
+
 		READ_DATA(value, speed);
 	}
-//}
+}

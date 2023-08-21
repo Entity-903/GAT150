@@ -16,6 +16,8 @@ public:
 		transform{ transform }
 	{}
 
+	Actor(const Actor& other);
+
 	virtual bool Initialize() override;
 	virtual void OnDestroy() override;
 
@@ -40,6 +42,8 @@ public:
 	std::string tag;
 	float lifespan = -1.0f;
 	bool destroyed = false;
+	bool persistant = false;
+	bool prototype = false;
 
 	CLASS_DECLARATION(Actor)
 

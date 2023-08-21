@@ -136,7 +136,7 @@ int main(int argc, char* argv[])
 		kiko::g_renderer.SetColor(0, 0, 0, 0);
 		kiko::g_renderer.BeginFrame();
 
-		//text->Draw(kiko::g_renderer, 400, 300);
+		game->Draw(kiko::g_renderer);
 
 		for (auto& star : stars)
 		{
@@ -151,7 +151,6 @@ int main(int argc, char* argv[])
 	
 		kiko::g_renderer.SetColor(kiko::random(256), kiko::random(256), kiko::random(256), 255);
 
-		game->Draw(kiko::g_renderer);
 		kiko::g_particleSystem.Draw(kiko::g_renderer);
 
 		kiko::g_renderer.EndFrame();
