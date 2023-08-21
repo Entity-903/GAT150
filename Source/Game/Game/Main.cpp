@@ -5,6 +5,7 @@
 #include "Enemy.h"
 #include "Audio/AudioSystem.h"
 #include "Framework/Framework.h"
+#include "Physics/PhysicsSystem.h"
 
 #include "SpaceGame.h"
 
@@ -58,6 +59,8 @@ int main(int argc, char* argv[])
 	kiko::g_inputSystem.Initialize();
 
 	kiko::g_audioSystem.Initialize();
+
+	kiko::PhysicsSystem::Instance().Initialize();
 
 	unique_ptr<SpaceGame> game = make_unique<SpaceGame>();
 	game->Initialize();
