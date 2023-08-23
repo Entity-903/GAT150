@@ -1,13 +1,19 @@
+INFO: Factory.h(69) Class Registered: Enemy
+INFO: Factory.h(69) Class Registered: Player
 INFO: Factory.h(69) Class Registered: Weapon
 INFO: Factory.h(69) Class Registered: SpriteComponent
 INFO: Factory.h(69) Class Registered: TextRenderComponent
 INFO: Factory.h(69) Class Registered: ModelRenderComponent
 INFO: Factory.h(69) Class Registered: EnginePhysicsComponent
 INFO: Factory.h(69) Class Registered: CircleCollisionComponent
+INFO: Factory.h(69) Class Registered: Box2DPhysicsComponent
+INFO: Factory.h(69) Class Registered: Box2DCollisionComponent
 INFO: Factory.h(69) Class Registered: Actor
 INFO: Factory.h(69) Class Registered: SpriteComponent
-INFO: Main.cpp(104) Initialize Engine...
+INFO: Main.cpp(57) Initialize Engine...
 INFO: Factory.h(77) Prototype Class Registered: PlayerBasicWeapon
 INFO: Factory.h(77) Prototype Class Registered: EnemyBasicWeapon
+INFO: Factory.h(77) Prototype Class Registered: Enemy
+INFO: Factory.h(77) Prototype Class Registered: Player
 INFO: EventManager.cpp(18) Event Subscribed: OnAddPoints
 INFO: EventManager.cpp(18) Event Subscribed: OnPlayerDead

@@ -9,8 +9,6 @@
 #include "Renderer/Renderer.h"
 #include "Renderer/Text.h"
 
-// Vector3.h Needs More Work!!!
-
 
 bool SpaceGame::Initialize()
 {
@@ -63,22 +61,11 @@ void SpaceGame::Update(float dt)
 		m_scene->RemoveAll();
 
 		// Create Player
-		std::unique_ptr<Player> player = std::make_unique<Player>(20.0f, kiko::Pi, kiko::Transform{ { 400, 300 }, 0, 0.25f });
-		player->tag = "Player";
+		auto player = INSTANTIATE(Player, "Player");
 		player->m_game = this;
 
 		// Create Components
-		auto renderComponent = CREATE_CLASS(SpriteComponent)
-		renderComponent->m_texture = GET_RESOURCE(kiko::Texture, "JoeBiden.jpg", kiko::g_renderer); // "Ship.txt" 
-		player->AddComponent(std::move(renderComponent));
-
-		auto physicsComponent = CREATE_CLASS(EnginePhysicsComponent)
-		physicsComponent->m_damping = 0.9f;
-		player->AddComponent(std::move(physicsComponent));
-
-		auto collisionComponent = CREATE_CLASS(CircleCollisionComponent)
-		collisionComponent->m_radius = 30.0f;
-		player->AddComponent(std::move(collisionComponent));
+		// Done using Json file
 
 		player->Initialize();
 		m_scene->Add(std::move(player));
@@ -90,18 +77,14 @@ void SpaceGame::Update(float dt)
 		if (m_spawnTimer >= m_spawnTime)
 		{
 			m_spawnTimer = 0.0f;
-			std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(kiko::randomf(75.0f, 150.0f), kiko::Pi, kiko::Transform{ {kiko::randomf((float)kiko::g_renderer.GetWidth()), kiko::randomf((float)kiko::g_renderer.GetHeight())}, kiko::randomf(kiko::TwoPi), 0.5f}, *this);
-			enemy->tag = "Enemy";
+
+			// Create Enemy
+			auto enemy = INSTANTIATE(Enemy, "Enemy");
+			enemy->transform = kiko::Transform{ {kiko::randomf((float)kiko::g_renderer.GetWidth()), kiko::randomf((float)kiko::g_renderer.GetHeight())}, kiko::randomf(kiko::TwoPi), 0.5f };
 			enemy->m_game = this;
 
 			// Create Components
-			auto renderComponent = CREATE_CLASS(SpriteComponent)
-			renderComponent->m_texture = GET_RESOURCE(kiko::Texture, "DonaldTrump.jpg", kiko::g_renderer);
-			enemy->AddComponent(std::move(renderComponent));
-
-			auto collisionComponent = CREATE_CLASS(CircleCollisionComponent)
-			collisionComponent->m_radius = 30.0f;
-			enemy->AddComponent(std::move(collisionComponent));
+			// Done using Json file
 
 			enemy->Initialize();
 			m_scene->Add(std::move(enemy));

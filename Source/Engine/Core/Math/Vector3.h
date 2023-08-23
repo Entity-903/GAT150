@@ -10,7 +10,6 @@ namespace kiko
 		float x, y, z;
 
 	public:
-		// Not Finished
 		Vector3() : x{ 0 }, y{ 0 }, z{ 0 } {}
 		Vector3(float v) : x{ v }, y{ v }, z{ v } {}
 		Vector3(float x, float y, float z) : x{ x }, y{ y }, z{ z } {}

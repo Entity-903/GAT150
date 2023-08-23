@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\..\Build\Assets\Scene.json">
-      <Filter>Source\Resources</Filter>
+      <Filter>Source</Filter>
     </Text>
   </ItemGroup>
 </Project>

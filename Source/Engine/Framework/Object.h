@@ -6,7 +6,7 @@
 // Backslash '\' is needed for multi-line macros
 #define CLASS_DECLARATION(classname) \
 	virtual const char* GetClassName() { return #classname; } \
-	virtual void Read(const json_t& value); \
+	virtual void Read(const kiko::json_t& value); \
 virtual std::unique_ptr<Object>Clone() { return std::make_unique<classname>(*this); } \
 	class Register \
 	{ \

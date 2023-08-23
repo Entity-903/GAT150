@@ -17,6 +17,13 @@
 #include <map>
 #include <functional>
 
+/* Needs Work:
+* Enemy.cpp
+* Player.cpp
+* Scene.json - player and enemy 
+*/
+
+
 using namespace std;
 
 class Star
@@ -43,62 +50,8 @@ public:
 	kiko::vec2 m_vel;
 };
 
-void print(int i)
-{
-	cout << i << endl;
-}
-
-int add(int i1, int i2)
-{
-	return i1 + i2;
-}
-
-int sub(int i1, int i2)
-{
-	return i1 - i2;
-}
-
-class A
-{
-public:
-	int add(int i1, int i2)
-	{
-		return i1 + i2;
-	}
-
-};
-
-union Data
-{
-	int i;
-	bool b;
-	char c[6];
-};
-
 int main(int argc, char* argv[])
 {
-	Data data;
-	data.i = 0;
-	cout << data.b << endl;
-
-
-
-	void (*func_ptr)(int) = &print;
-	func_ptr(5);
-
-	int (*op_ptr)(int, int);
-	op_ptr = sub;
-
-	cout << op_ptr(4, 4) << endl;
-
-	std::function<int(int, int)> op;
-	op = add;
-	cout << op(5, 6) << endl;
-
-	A a;
-	op = std::bind(&A::add, &a, std::placeholders::_1, std::placeholders::_2);
-	cout << op(6, 6) << endl;
-
 	kiko::Factory::Instance().Register<kiko::SpriteComponent>("SpriteComponent");
 
 	INFO_LOG("Initialize Engine...");
@@ -127,20 +80,6 @@ int main(int argc, char* argv[])
 
 	float speed = 100;
 	constexpr float turnrate = kiko::DegreesToRadians(180);
-
-	/*kiko::Scene scene;
-	unique_ptr<Player> player = std::make_unique<Player>(200.0f, kiko::Pi, kiko::Transform{ { 400, 300 }, 0, 6 }, kiko::g_manager.Get("Ship.txt"));
-	player->m_tag = "Player";
-	scene.Add(std::move(player));
-
-
-
-	for (int i = 0; i < 5; i++)
-	{
-		unique_ptr<Enemy> enemy = std::make_unique<Enemy>(kiko::randomf(75.0f, 150.0f), kiko::Pi, kiko::Transform{ {kiko::randomf(kiko::g_renderer.GetWidth()), kiko::randomf(kiko::g_renderer.GetHeight())}, kiko::randomf(kiko::TwoPi), 3}, kiko::g_manager.Get("Something.txt"));
-		enemy->m_tag = "Enemy";
-		scene.Add(std::move(enemy));
-	}*/
 
 	vector<Star> stars;
 	for (int i = 0; i < 5000; i++)
@@ -172,6 +111,9 @@ int main(int argc, char* argv[])
 		{
 			quit = true;
 		}
+
+		kiko::g_particleSystem.Update(kiko::g_time.GetDeltaTime());
+		kiko::PhysicsSystem::Instance().Update(kiko::g_time.GetDeltaTime());
 
 		// Update game
 		game->Update(kiko::g_time.GetDeltaTime());

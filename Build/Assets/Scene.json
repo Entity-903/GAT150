@@ -1,62 +1,18 @@
 {
-	"actors":[
+	"actors": [
 		{
 			"type": "Actor",
 			"name": "Background",
 			"persistent": true,
 			"transform": {
 				"position": [ 400, 300 ],
-				"scale": 3.5,
+				"scale": 2,
 				"rotation": 0
 			},
 			"components": [
 				{
 					"type": "SpriteComponent",
 					"textureName": "SpaceBackground.jpg"
-				}
-			]
-		},
-		{
-			"type": "Weapon",
-			"name": "PlayerBasicWeapon",
-			"prototype": true,
-			"lifespan": 2.0,
-			"tag": "Player",
-			"transform": {
-				"position": [ 400, 300 ],
-				"scale": 1,
-				"rotation": 0
-			},
-			"speed": 250.0,
-			"components": [
-				{
-					"type": "SpriteComponent",
-					"textureName": "SpaceProjectile.png"
-				},
-				{
-					"type": "CircleCollisionComponent"
-				}
-			]
-		},
-		{
-			"type": "Weapon",
-			"name": "EnemyBasicWeapon",
-			"prototype": true,
-			"lifespan": 2.0,
-			"tag": "Enemy",
-			"transform": {
-				"position": [ 400, 300 ],
-				"scale": 1,
-				"rotation": 0
-			},
-			"speed": 250.0,
-			"components": [
-				{
-					"type": "SpriteComponent",
-					"textureName": "SpaceProjectile.png"
-				},
-				{
-					"type": "CircleCollisionComponent"
 				}
 			]
 		},
@@ -72,11 +28,118 @@
 			"components": [
 				{
 					"type": "TextRenderComponent",
-					"fontName": "ArcadeClassic.ttf",
+					"fontName": "arcadeclassic.ttf",
 					"fontSize": 24,
-					"text": "Asteroids"
+					"text": "ASTEROIDZ"
+				}
+			]
+		},
+		{
+			"type": "Weapon",
+			"name": "PlayerBasicWeapon",
+			"prototype": true,
+			"tag": "Player",
+			"lifespan": 3.0,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 1,
+				"rotation": 0
+			},
+			"speed": 300.0,
+			"components": [
+				{
+					"type": "SpriteComponent",
+					"textureName": "SpaceProjectile.png"
+				},
+				{
+					"type": "CircleCollisionComponent"
+				}
+			]
+		},
+		{
+			"type": "Weapon",
+			"name": "EnemyBasicWeapon",
+			"prototype": true,
+			"tag": "Enemy",
+			"lifespan": 3.0,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 1,
+				"rotation": 0
+			},
+			"speed": 300.0,
+			"components": [
+				{
+					"type": "SpriteComponent",
+					"textureName": "SpaceProjectile.png"
+				},
+				{
+					"type": "CircleCollisionComponent"
+				}
+			]
+		},
+		{
+			"type": "Enemy",
+			"name": "Enemy",
+			"prototype": true,
+			"tag": "Enemy",
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 0.75,
+				"rotation": 0
+			},
+			"speed": 1.0,
+			"turnRate": 0.05,
+			"health": 20.0,
+			"fireTime": 2.0,
+			"fireRate": 2.0,
+			"components": [
+				{
+					"type": "SpriteComponent",
+					"textureName": "Enemy_Ship.png"
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.98,
+					"angularDamping": 20.0,
+					"gravityScale": 0.0
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [ 32, 32 ]
+				}
+			]
+		},
+		{
+			"type": "Player",
+			"name": "Player",
+			"prototype": true,
+			"tag": "Player",
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 0.5,
+				"rotation": 0
+			},
+			"speed": 1.0,
+			"turnRate": 0.05,
+			"health": 100.0,
+			"components": [
+				{
+					"type": "SpriteComponent",
+					"textureName": "Player_Ship.png"
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.98,
+					"angularDamping": 10.0,
+					"gravityScale": 0.0
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [ 32, 32 ]
 				}
 			]
 		}
+
 	]
 }
