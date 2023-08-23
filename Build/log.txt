@@ -6,6 +6,8 @@ INFO: Factory.h(69) Class Registered: EnginePhysicsComponent
 INFO: Factory.h(69) Class Registered: CircleCollisionComponent
 INFO: Factory.h(69) Class Registered: Actor
 INFO: Factory.h(69) Class Registered: SpriteComponent
-INFO: Main.cpp(49) Initialize Engine...
+INFO: Main.cpp(104) Initialize Engine...
 INFO: Factory.h(77) Prototype Class Registered: PlayerBasicWeapon
 INFO: Factory.h(77) Prototype Class Registered: EnemyBasicWeapon
+INFO: EventManager.cpp(18) Event Subscribed: OnAddPoints
+INFO: EventManager.cpp(18) Event Subscribed: OnPlayerDead

@@ -15,6 +15,7 @@
 #include <memory>
 #include <array>
 #include <map>
+#include <functional>
 
 using namespace std;
 
@@ -42,8 +43,62 @@ public:
 	kiko::vec2 m_vel;
 };
 
+void print(int i)
+{
+	cout << i << endl;
+}
+
+int add(int i1, int i2)
+{
+	return i1 + i2;
+}
+
+int sub(int i1, int i2)
+{
+	return i1 - i2;
+}
+
+class A
+{
+public:
+	int add(int i1, int i2)
+	{
+		return i1 + i2;
+	}
+
+};
+
+union Data
+{
+	int i;
+	bool b;
+	char c[6];
+};
+
 int main(int argc, char* argv[])
 {
+	Data data;
+	data.i = 0;
+	cout << data.b << endl;
+
+
+
+	void (*func_ptr)(int) = &print;
+	func_ptr(5);
+
+	int (*op_ptr)(int, int);
+	op_ptr = sub;
+
+	cout << op_ptr(4, 4) << endl;
+
+	std::function<int(int, int)> op;
+	op = add;
+	cout << op(5, 6) << endl;
+
+	A a;
+	op = std::bind(&A::add, &a, std::placeholders::_1, std::placeholders::_2);
+	cout << op(6, 6) << endl;
+
 	kiko::Factory::Instance().Register<kiko::SpriteComponent>("SpriteComponent");
 
 	INFO_LOG("Initialize Engine...");
@@ -65,11 +120,6 @@ int main(int argc, char* argv[])
 	unique_ptr<SpaceGame> game = make_unique<SpaceGame>();
 	game->Initialize();
 	//kiko::g_audioSystem.AddAudio("Laser_Shoot", "Laser_Shoot.wav");
-
-	//// Create Font / Text Objects
-	//std::shared_ptr<kiko::Font> font = std::make_shared<kiko::Font>("EmptyMegazineDemoRegular.ttf", 24);
-	//std::unique_ptr<kiko::Text> text = std::make_unique<kiko::Text>(font);
-	//text->Create(kiko::g_renderer, "NEUMONT", kiko::Color{ 1, 1, 1, 1 });
 
 	//kiko::Model model;
 	//model.Load("Ship.txt");

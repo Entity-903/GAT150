@@ -15,12 +15,9 @@
 bool SpaceGame::Initialize()
 {
 	// Create Font / Text Objects
-	//m_font = GET_RESOURCE(kiko::Font, "EmptyMegazineDemoRegular.ttf", 24); //std::make_shared<kiko::Font>("EmptyMegazineDemoRegular.ttf", 24);
+	//m_font = GET_RESOURCE(kiko::Font, "ArcadeClassic.ttf", 24); //std::make_shared<kiko::Font>("ArcadeClassic.ttf", 24);
 	m_scoreText = std::make_unique<kiko::Text>(GET_RESOURCE(kiko::Font, "ArcadeClassic.ttf", 24));
 	m_scoreText->Create(kiko::g_renderer, "SCORE 0000", kiko::Color{ 1, 0, 1, 1 });
-
-	//m_titleText = std::make_unique<kiko::Text>(GET_RESOURCE(kiko::Font, "ArcadeClassic.ttf", 24));
-	//m_titleText->Create(kiko::g_renderer, "Asteroids", kiko::Color{ 1, 1, 1, 1 });
 
 	m_gameoverText = std::make_unique<kiko::Text>(GET_RESOURCE(kiko::Font, "ArcadeClassic.ttf", 24));
 	m_gameoverText->Create(kiko::g_renderer, "Game Over", kiko::Color{ 1, 1, 1, 1 });
@@ -33,7 +30,9 @@ bool SpaceGame::Initialize()
 	m_scene->Load("Scene.json");
 	m_scene->Initialize();
 
-
+	// Add Events
+	EVENT_SUBSCRIBE("OnAddPoints", SpaceGame::OnAddPoints);
+	EVENT_SUBSCRIBE("OnPlayerDead", SpaceGame::OnPlayerDead);
 
 	return true;
 }
@@ -146,4 +145,14 @@ void SpaceGame::Draw(kiko::Renderer& renderer)
 		m_gameoverText->Draw(renderer, 400, 300);
 	}
 	m_scoreText->Draw(renderer, 40, 40);
+}
+
+void SpaceGame::OnAddPoints(const kiko::Event& event)
+{
+	m_score += std::get<int>(event.data);
+}
+
+void SpaceGame::OnPlayerDead(const kiko::Event& event)
+{
+	m_state = eState::PlayerDeadStart;
 }

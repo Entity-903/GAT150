@@ -110,7 +110,8 @@ void Enemy::OnCollision(Actor* other)
 				m_scene->Add(std::move(emitter));
 
 				// Points and Destruction
-				m_game->AddPoints(100);
+				kiko::EventManager::Instance().DispatchEvent("OnAddPoints", 100);
+				//m_game->AddPoints(100);
 				destroyed = true;
 			}
 	}

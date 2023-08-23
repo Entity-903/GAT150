@@ -142,6 +142,7 @@
     <ClCompile Include="Components\TextRenderComponent.cpp" />
     <ClCompile Include="Component\SpriteComponent.cpp" />
     <ClCompile Include="Emitter.cpp" />
+    <ClCompile Include="Event\EventManager.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Scene.cpp" />
   </ItemGroup>
@@ -157,6 +158,8 @@
     <ClInclude Include="Components\TextRenderComponent.h" />
     <ClInclude Include="Component\SpriteComponent.h" />
     <ClInclude Include="Emitter.h" />
+    <ClInclude Include="Event\Event.h" />
+    <ClInclude Include="Event\EventManager.h" />
     <ClInclude Include="Factory.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="Game.h" />

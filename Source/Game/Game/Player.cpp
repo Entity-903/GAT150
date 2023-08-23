@@ -101,8 +101,9 @@ void Player::OnCollision(Actor* other)
 		std::cout << m_health << "\n";
 		if (m_health <= 0)
 		{
-			m_game->SetLives(m_game->GetLives() - 1);
-			dynamic_cast<SpaceGame*>(m_game)->SetState(SpaceGame::eState::PlayerDeadStart);
+			//m_game->SetLives(m_game->GetLives() - 1);
+			//dynamic_cast<SpaceGame*>(m_game)->SetState(SpaceGame::eState::PlayerDeadStart);
+			kiko::EventManager::Instance().DispatchEvent("OnPlayerDead", 0);
 			destroyed = true;
 		}
 	}
