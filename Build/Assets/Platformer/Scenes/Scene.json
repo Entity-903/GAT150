@@ -1,0 +1,250 @@
+{
+	"actors": [
+		{
+			"type": "Actor",
+			"name": "Background",
+			"persistent": true,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 1.0,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "SpriteComponent",
+					"textureName": "Textures/background.png"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Coin",
+			"persistent": true,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 1.0,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "SpriteAnimRenderComponent",
+					"textureName": "Textures/RotatingCoin.png",
+					"defaultSequenceName": "idle",
+					"sequences": [
+						{
+							"name": "idle",
+							"fps": 12,
+							"numColumns": 8,
+							"numRows": 1,
+							"startFrame": 1,
+							"endFrame": 8,
+							"textureName": "Textures/RotatingCoin.png"
+						}
+					]
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0,
+					"gravityScale": 1,
+					"constrainAngle": true
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"restitution": 0.5
+				}
+			]
+		},
+		{
+			"type": "Player",
+			"name": "Player",
+			"tag": "Player",
+			"persistent": true,
+			"transform": {
+				"position": [ 100, 400 ],
+				"scale": 1.0,
+				"rotation": 0
+			},
+			"speed": 10.0,
+			"jump": 10.0,
+			"health": 100.0,
+			"components": [
+				{
+					"type": "SpriteAnimRenderComponent",
+					"textureName": "Textures/Bat.png",
+					"defaultSequenceName": "idle",
+					"sequences": [
+						{
+							"name": "idle",
+							"fps": 12,
+							"numColumns": 4,
+							"numRows": 1,
+							"startFrame": 1,
+							"endFrame": 4,
+							"textureName": "Textures/Bat.png"
+						},
+						{
+							"name": "run",
+							"fps": -12,
+							"numColumns": 8,
+							"numRows": 1,
+							"startFrame": 1,
+							"endFrame": 8,
+							"textureName": "Textures/Bat.png"
+						}
+					]
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0,
+					"gravityScale": 1,
+					"constrainAngle": true
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"restitution": 0.5
+				}
+			]
+		},
+		{
+			"type": "Enemy",
+			"name": "Enemy",
+			"tag": "Enemy",
+			"persistent": true,
+			"transform": {
+				"position": [ 500, 200 ],
+				"scale": 1.0,
+				"rotation": 0
+			},
+			"speed": 10,
+			"health": 20.0,
+			"components": [
+				{
+					"type": "SpriteAnimRenderComponent",
+					"defaultSequenceName": "idle",
+					"sequences": [
+						{
+							"name": "idle",
+							"fps": 12,
+							"numColumns": 4,
+							"numRows": 1,
+							"startFrame": 1,
+							"endFrame": 4,
+							"textureName": "Textures/Bat.png"
+						}
+					]
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0,
+					"gravityScale": 0,
+					"constrainAngle": true
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"restitution": 0.5
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Crate",
+			"persistent": true,
+			"prototype": true,
+			"transform": {
+				"position": [ 200, 300 ],
+				"scale": 1.0,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "SpriteComponent",
+					"textureName": "Textures/crate.png"
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0,
+					"gravityScale": 1,
+					"constrainAngle": true
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"restitution": 0.1
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Title",
+			"persistent": true,
+			"transform": {
+				"position": [ 400, 200 ],
+				"scale": 2.0,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "TextRenderComponent",
+					"fontName": "Fonts/ArcadeClassic.ttf",
+					"fontSize": 24,
+					"text": "Platformer",
+					"color": [ 1, 0, 0, 1 ]
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "ScoreText",
+			"persistent": true,
+			"transform": {
+				"position": [ 400, 200 ],
+				"scale": 2.0,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "TextRenderComponent",
+					"fontName": "Fonts/ArcadeClassic.ttf",
+					"fontSize": 24,
+					"text": "Platformer",
+					"color": [ 1, 0, 0, 1 ]
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "GameOverText",
+			"persistent": true,
+			"transform": {
+				"position": [ 400, 200 ],
+				"scale": 2.0,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "TextRenderComponent",
+					"fontName": "Fonts/ArcadeClassic.ttf",
+					"fontSize": 24,
+					"text": "Platformer",
+					"color": [ 1, 0, 0, 1 ]
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"tag": "Ground",
+			"transform": {
+				"position": [ 400, 520 ]
+			},
+			"components": [
+				{
+					"type": "Box2DPhysicsComponent",
+					"isDynamic": false
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [ 600, 20 ]
+				}
+			]
+		}
+	]
+}

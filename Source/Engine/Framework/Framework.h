@@ -9,7 +9,7 @@
 #include "Components/Component.h"
 
 #include "Components/RenderComponent.h"
-#include "Component/SpriteComponent.h"
+#include "Components/SpriteComponent.h"
 #include "Components/ModelRenderComponent.h"
 
 #include "Components/PhysicsComponent.h"

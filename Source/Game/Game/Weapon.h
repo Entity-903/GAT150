@@ -1,4 +1,6 @@
 #pragma once
+
+#include "Framework/Components/PhysicsComponent.h"
 #include "Framework/Actor.h"
 
 
@@ -12,10 +14,11 @@ namespace kiko
 		bool Initialize() override;
 		void Update(float dt) override;
 
-		void OnCollision(kiko::Actor* actor);
+		void OnCollisionEnter(kiko::Actor* actor);
 
 	private:
 		float speed = 0;
+		PhysicsComponent* m_physicsComponent = nullptr;
 	};
 
 }

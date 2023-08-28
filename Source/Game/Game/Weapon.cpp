@@ -11,10 +11,12 @@ namespace kiko
 	{
 		Actor::Initialize();
 
+		m_physicsComponent = GetComponent<PhysicsComponent>();
+
 		//auto collisionComponent = GetComponent<kiko::CollisionComponent>(kiko::CollisionComponent);
 		// if (collisionComponent)
 		//{
-		//	auto renderComponent = GetComponent<kiko::CollisionComponent>()
+		//	
 		//}
 
 		return true;
@@ -25,12 +27,13 @@ namespace kiko
 		Actor::Update(dt);
 
 		kiko::vec2 forward = kiko::vec2{ 0, -1 }.Rotate(transform.rotation);
-		transform.position += forward * speed * kiko::g_time.GetDeltaTime();
+		m_physicsComponent->SetVelocity(forward * speed);
+
 		transform.position.x = kiko::Wrap((float)transform.position.x, (float)kiko::g_renderer.GetWidth());
 		transform.position.y = kiko::Wrap((float)transform.position.y, (float)kiko::g_renderer.GetHeight());
 	}
 
-	void Weapon::OnCollision(kiko::Actor* other)
+	void Weapon::OnCollisionEnter(kiko::Actor* other)
 	{
 		if (other->tag != tag)
 		{

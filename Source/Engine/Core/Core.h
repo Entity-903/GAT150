@@ -9,6 +9,7 @@
 
 // Math
 #include "Math/Color.h"
+#include "Math/Rect.h"
 #include "Math/Transform.h"
 #include "Math/Vector2.h"
 #include "Math/MathUtils.h"

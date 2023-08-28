@@ -7,7 +7,7 @@ namespace kiko
 	class Player : public kiko::Actor
 	{
 	public:
-		CLASS_DECLARATION(Player);
+		CLASS_DECLARATION(Player)
 
 		//Player(float speed, float turnRate, const kiko::Transform& transform) :
 		//	Actor{ transform },
@@ -17,7 +17,7 @@ namespace kiko
 
 		bool Initialize() override;
 		void Update(float dt) override;
-		void OnCollision(Actor* other) override;
+		void OnCollisionEnter(Actor* other) override;
 
 	private:
 		float m_speed = 0;

@@ -18,9 +18,7 @@
 #include <functional>
 
 /* Needs Work:
-* Enemy.cpp
-* Player.cpp
-* Scene.json - player and enemy 
+Audio for Laser_Shoot does not function - Occurred after file locations were updated for json
 */
 
 
@@ -58,7 +56,7 @@ int main(int argc, char* argv[])
 
 	kiko::MemoryTracker::Initialize();
 	kiko::seedRandom((unsigned int)time(nullptr));
-	kiko::setFilePath("assets");
+	kiko::setFilePath("assets/SpaceGame");
 
 	// Engine Initialization
 	kiko::g_renderer.Initialize();
@@ -72,7 +70,7 @@ int main(int argc, char* argv[])
 
 	unique_ptr<SpaceGame> game = make_unique<SpaceGame>();
 	game->Initialize();
-	//kiko::g_audioSystem.AddAudio("Laser_Shoot", "Laser_Shoot.wav");
+	kiko::g_audioSystem.AddAudio("Laser_Shoot", "Audio/Laser_Shoot.wav");
 
 	//kiko::Model model;
 	//model.Load("Ship.txt");

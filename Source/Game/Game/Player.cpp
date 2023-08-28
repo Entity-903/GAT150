@@ -2,7 +2,7 @@
 #include "Weapon.h"
 #include "SpaceGame.h"
 #include "Framework/Scene.h"
-#include "Framework/Component/SpriteComponent.h"
+#include "Framework/Components/SpriteComponent.h"
 #include "Framework/Resource/ResourceManager.h"
 #include "Framework/Components/PhysicsComponent.h"
 #include "Input/InputSystem.h"
@@ -98,7 +98,7 @@ namespace kiko
 		else kiko::g_time.SetTimeScale(1.0f);
 	}
 
-	void Player::OnCollision(Actor* other)
+	void Player::OnCollisionEnter(Actor* other)
 	{
 		if (dynamic_cast<kiko::Weapon*>(other) != nullptr && other->tag == "Enemy")
 		{

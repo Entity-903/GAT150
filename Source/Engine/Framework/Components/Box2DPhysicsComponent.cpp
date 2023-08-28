@@ -42,6 +42,11 @@ namespace kiko
 		m_body->ApplyTorque(torque, true);
 	}
 
+	void Box2DPhysicsComponent::SetVelocity(const vec2& velocity)
+	{
+		m_body->SetLinearVelocity(VEC2_TO_B2VEC2(velocity));
+	}
+
 	void Box2DPhysicsComponent::Read(const json_t& value)
 	{
 		READ_NAME_DATA(value, "damping", data.damping);

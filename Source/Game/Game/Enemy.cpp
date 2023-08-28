@@ -101,7 +101,7 @@ namespace kiko
 		}
 	}
 
-	void Enemy::OnCollision(Actor* other)
+	void Enemy::OnCollisionEnter(Actor* other)
 	{
 
 		if (dynamic_cast<kiko::Weapon*>(other) != nullptr && other->tag == "Player")

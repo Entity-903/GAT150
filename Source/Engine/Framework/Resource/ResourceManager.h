@@ -23,15 +23,24 @@ namespace kiko
 	template<typename T, typename ...TArgs>
 	inline res_t<T> ResourceManager::Get(const std::string& filename, TArgs ...args)
 	{
+		// Find resource in Resource Manager
 		if (m_resources.find(filename) != m_resources.end())
 		{
+			// Return Resource
 			return std::dynamic_pointer_cast<T>(m_resources[filename]);
 		}
 
+		// Resource not in Resource Manager, Create Resource
 		res_t<T> resource = std::make_shared<T>();
-		resource->Create(filename, args...);
-		m_resources[filename] = resource;
+		if (!resource->Create(filename, args...))
+		{
+			// Resource not Created
+			WARNING_LOG("Could not create resource: " << filename);
+			return res_t<T>();
+		}
 
+		// Add Resource to Resource Manager, Return Resource
+		m_resources[filename] = resource;
 		return resource;
 	}
 }

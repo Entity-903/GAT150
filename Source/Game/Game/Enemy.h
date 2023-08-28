@@ -10,21 +10,12 @@ class Enemy : public kiko::Actor
 {
 	public:
 
-		CLASS_DECLARATION(Enemy);
+		CLASS_DECLARATION(Enemy)
 
-		/*Enemy(float speed, float turnRate, const kiko::Transform& transform, SpaceGame& spaceGame) :
-			Actor{ transform },
-			m_speed{ speed },
-			spaceGame{ spaceGame },
-			m_turnRate{ turnRate }
-		{
-			m_fireTime = 2.0f;
-			m_fireRate = m_fireTime;
-		}*/
 		bool Initialize() override;
 
 		void Update(float dt) override;
-		void OnCollision(Actor* other) override;
+		void OnCollisionEnter(Actor* other) override;
 
 	private:
 		float m_speed = 0;

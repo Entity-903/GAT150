@@ -6,13 +6,13 @@
 			"persistent": true,
 			"transform": {
 				"position": [ 400, 300 ],
-				"scale": 2,
+				"scale": 3.0,
 				"rotation": 0
 			},
 			"components": [
 				{
 					"type": "SpriteComponent",
-					"textureName": "SpaceBackground.jpg"
+					"textureName": "Textures/SpaceBackground.jpg"
 				}
 			]
 		},
@@ -22,13 +22,13 @@
 			"persistent": true,
 			"transform": {
 				"position": [ 400, 300 ],
-				"scale": 2,
+				"scale": 2.0,
 				"rotation": 0
 			},
 			"components": [
 				{
 					"type": "TextRenderComponent",
-					"fontName": "arcadeclassic.ttf",
+					"fontName": "Fonts/arcadeclassic.ttf",
 					"fontSize": 24,
 					"text": "ASTEROIDZ"
 				}
@@ -42,17 +42,25 @@
 			"lifespan": 3.0,
 			"transform": {
 				"position": [ 400, 300 ],
-				"scale": 1,
+				"scale": 1.0,
 				"rotation": 0
 			},
-			"speed": 300.0,
+			"speed": 10.0,
 			"components": [
 				{
 					"type": "SpriteComponent",
-					"textureName": "SpaceProjectile.png"
+					"textureName": "Textures/SpaceProjectile.png"
 				},
 				{
-					"type": "CircleCollisionComponent"
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.0,
+					"angularDamping": 2.0,
+					"gravityScale": 0.0
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [ 8, 16 ],
+					"isTrigger": true
 				}
 			]
 		},
@@ -64,17 +72,25 @@
 			"lifespan": 3.0,
 			"transform": {
 				"position": [ 400, 300 ],
-				"scale": 1,
+				"scale": 1.0,
 				"rotation": 0
 			},
-			"speed": 300.0,
+			"speed": 10.0,
 			"components": [
 				{
 					"type": "SpriteComponent",
-					"textureName": "SpaceProjectile.png"
+					"textureName": "Textures/SpaceProjectile.png"
 				},
 				{
-					"type": "CircleCollisionComponent"
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.0,
+					"angularDamping": 2.0,
+					"gravityScale": 0.0
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [ 8, 16 ],
+					"isTrigger": true
 				}
 			]
 		},
@@ -96,7 +112,7 @@
 			"components": [
 				{
 					"type": "SpriteComponent",
-					"textureName": "Enemy_Ship.png"
+					"textureName": "Textures/Enemy_Ship.png"
 				},
 				{
 					"type": "Box2DPhysicsComponent",
@@ -126,7 +142,7 @@
 			"components": [
 				{
 					"type": "SpriteComponent",
-					"textureName": "Player_Ship.png"
+					"textureName": "Textures/Player_Ship.png"
 				},
 				{
 					"type": "Box2DPhysicsComponent",
