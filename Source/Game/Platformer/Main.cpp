@@ -14,7 +14,7 @@
 #include <map>
 #include <functional>
 
-// Get Player and Enemy Sprites
+// Get Player Sprite
 
 using namespace std;
 
