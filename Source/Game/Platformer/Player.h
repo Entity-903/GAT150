@@ -18,6 +18,7 @@ namespace kiko
 	private:
 		float m_speed;
 		float m_jump;
+		float maxSpeed = 0;
 		int groundCount = 0;
 		float m_health;
 

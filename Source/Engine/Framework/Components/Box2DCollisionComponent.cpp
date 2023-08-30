@@ -12,13 +12,14 @@ namespace kiko
 		auto component = m_owner->GetComponent<Box2DPhysicsComponent>();
 		if (component)
 		{
-			if (data.size.x == 0 && data.size.y == 0)
+			auto spriteComponent = m_owner->GetComponent<SpriteComponent>();
+			if (spriteComponent)
 			{
-				auto spriteComponent = m_owner->GetComponent<SpriteComponent>();
-				if (spriteComponent)
+				if (data.size.x == 0 && data.size.y == 0)
 				{
 					data.size = vec2{ spriteComponent->source.w, spriteComponent->source.h };
 				}
+				data.offset = spriteComponent->origin - vec2{ 0.5f, 0.5f };
 			}
 
 			data.size = data.size * scaleOffset * m_owner->transform.scale;
@@ -37,7 +38,7 @@ namespace kiko
 	}
 
 	void Box2DCollisionComponent::Update(float dt)
-	{ 
+	{
 		//
 	}
 

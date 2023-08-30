@@ -28,7 +28,6 @@
 			"components": [
 				{
 					"type": "SpriteAnimRenderComponent",
-					"textureName": "Textures/RotatingCoin.png",
 					"defaultSequenceName": "idle",
 					"sequences": [
 						{
@@ -64,13 +63,16 @@
 				"scale": 1,
 				"rotation": 0
 			},
-			"speed": 100.0,
+			"speed": 50.0,
+			"maxSpeed": 8,
 			"jump": 10.0,
 			"health": 100.0,
 			"components": [
 				{
 					"type": "SpriteAnimRenderComponent",
 					"defaultSequenceName": "idle",
+					"source": [0, 0, 40, 40],
+					"origin": [0.5, 1],
 					"sequences": [
 						{
 							"name": "idle",
@@ -111,7 +113,7 @@
 			"persistent": true,
 			"transform": {
 				"position": [ 500, 200 ],
-				"scale": 1.0,
+				"scale": 2.0,
 				"rotation": 0
 			},
 			"speed": 10,
@@ -226,23 +228,6 @@
 					"fontSize": 24,
 					"text": "Platformer",
 					"color": [ 1, 0, 0, 1 ]
-				}
-			]
-		},
-		{
-			"type": "Actor",
-			"tag": "Ground",
-			"transform": {
-				"position": [ 400, 520 ]
-			},
-			"components": [
-				{
-					"type": "Box2DPhysicsComponent",
-					"isDynamic": false
-				},
-				{
-					"type": "Box2DCollisionComponent",
-					"size": [ 600, 20 ]
 				}
 			]
 		}

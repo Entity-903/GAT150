@@ -115,6 +115,7 @@ namespace kiko
 
 		SDL_Point center{ (int)(size.x * origin.x), (int)(size.y * origin.y) };
 
-		SDL_RenderCopyEx(m_renderer, texture->m_texture, (SDL_Rect*)(&source), &dest, RadiansToDegrees(mx.GetRotation()), &center, (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
+		SDL_RenderCopyEx(m_renderer, texture->m_texture, (SDL_Rect*)(&source), &dest, RadiansToDegrees(mx.GetRotation()), 
+			&center, (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
 	}
 }

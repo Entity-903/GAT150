@@ -34,8 +34,16 @@ namespace kiko
 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_A)) dir = -1;
 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_D)) dir = 1;
 
+		if (dir)
+		{
 		kiko::vec2 forward = kiko::vec2{ 1, 0 };
-		m_physicsComponent->ApplyForce(forward * m_speed * dir * ((onGround) ? 1 : 0.5f)); // Replace 0.95f with 10.0f for TF2 Scout
+		velocity.x += m_speed * dir * ((onGround) ? 1 : 0.5f) * dt;
+		velocity.x = Clamp(velocity.x, -maxSpeed, maxSpeed);
+		m_physicsComponent->SetVelocity(velocity);
+
+		//m_physicsComponent->ApplyForce(forward * m_speed * dir * ((onGround) ? 1 : 0.5f)); // Replace 0.5f with 10.0f for TF2 Scout
+		}
+
 
 		// Jump
 		if (onGround && 
@@ -45,6 +53,8 @@ namespace kiko
 			kiko::vec2 up = kiko::vec2{ 0, -1 };
 			m_physicsComponent->SetVelocity(vec2{ velocity.x, -m_jump } );
 		}
+
+		m_physicsComponent->SetGravityScale((velocity.y > 0) ? 3 : 2);
 
 		// Animation
 		// Check if Moving
@@ -92,6 +102,7 @@ namespace kiko
 		Actor::Read(value);
 
 		READ_NAME_DATA(value, "speed", m_speed);
+		READ_NAME_DATA(value, "maxSpeed", maxSpeed);
 		READ_NAME_DATA(value, "jump", m_jump);
 		READ_NAME_DATA(value, "health", m_health);
 	}

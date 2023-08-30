@@ -14,8 +14,12 @@
 #include <map>
 #include <functional>
 
-// How to prevent losing momentum when jumping? All momentum from running is lost immediately on jump
-// How to give sprites smaller collisions? i.e. Editing the sprite sheet file?
+// Origin of [ 0.5, 1 ] causes problems for the Player Sprite in json
+// Hitbox for coin is FuNkY (wide hitbox, 
+// falls through a platform and lands on the lower platform, 
+// and if player lands on top of coin hitbox, the character struggles to get out)
+
+// Theory is that is has something to do with origin and/or source in json
 
 using namespace std;
 
