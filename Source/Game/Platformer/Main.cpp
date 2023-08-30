@@ -14,7 +14,8 @@
 #include <map>
 #include <functional>
 
-// Get Player Sprite
+// How to prevent losing momentum when jumping? All momentum from running is lost immediately on jump
+// How to give sprites smaller collisions? i.e. Editing the sprite sheet file?
 
 using namespace std;
 

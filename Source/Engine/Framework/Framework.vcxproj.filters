@@ -55,6 +55,9 @@
     <ClCompile Include="Components\SpriteComponent.cpp">
       <Filter>Source\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Components\TilemapComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
@@ -127,6 +130,9 @@
       <Filter>Source\Components</Filter>
     </ClInclude>
     <ClInclude Include="Components\SpriteComponent.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\TilemapComponent.h">
       <Filter>Source\Components</Filter>
     </ClInclude>
   </ItemGroup>

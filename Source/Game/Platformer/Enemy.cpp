@@ -1,6 +1,6 @@
 #include "Enemy.h"
 #include "Player.h"
-#include "PlatformGame.h"
+#include "PlatformGame.h" // For difficulty scaling
 #include "Framework/Framework.h"
 #include "Renderer/Renderer.h"
 #include "Audio/AudioSystem.h"
@@ -15,16 +15,6 @@ namespace kiko
 		Actor::Initialize();
 
 		m_physicsComponent = GetComponent<kiko::PhysicsComponent>();
-		auto collisionComponent = GetComponent<kiko::CollisionComponent>();
-		if (collisionComponent != nullptr)
-		{
-			kiko::RenderComponent* renderComponent = GetComponent<kiko::RenderComponent>();
-			if (renderComponent != nullptr)
-			{
-				float scale = transform.scale;
-				collisionComponent->m_radius = renderComponent->GetRadius() * scale;
-			}
-		}
 
 		return true;
 	}
@@ -51,7 +41,7 @@ namespace kiko
 
 		if (other->tag == "Player")
 		{
-			m_health -= 10;
+			//m_health -= 10;
 			std::cout << m_health << "\n";
 			if (m_health <= 0)
 			{

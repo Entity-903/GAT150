@@ -60,48 +60,47 @@
 			"tag": "Player",
 			"persistent": true,
 			"transform": {
-				"position": [ 100, 400 ],
-				"scale": 1.0,
+				"position": [ 100, 0 ],
+				"scale": 1,
 				"rotation": 0
 			},
-			"speed": 10.0,
+			"speed": 100.0,
 			"jump": 10.0,
 			"health": 100.0,
 			"components": [
 				{
 					"type": "SpriteAnimRenderComponent",
-					"textureName": "Textures/Bat.png",
 					"defaultSequenceName": "idle",
 					"sequences": [
 						{
 							"name": "idle",
 							"fps": 12,
-							"numColumns": 4,
+							"numColumns": 10,
 							"numRows": 1,
 							"startFrame": 1,
-							"endFrame": 4,
-							"textureName": "Textures/Bat.png"
+							"endFrame": 10,
+							"textureName": "Textures/KnightSprites/Idle.png"
 						},
 						{
 							"name": "run",
-							"fps": -12,
-							"numColumns": 8,
+							"fps": 12,
+							"numColumns": 10,
 							"numRows": 1,
 							"startFrame": 1,
-							"endFrame": 8,
-							"textureName": "Textures/Bat.png"
+							"endFrame": 10,
+							"textureName": "Textures/KnightSprites/Run.png"
 						}
 					]
 				},
 				{
 					"type": "Box2DPhysicsComponent",
-					"damping": 0,
+					"damping": 2,
 					"gravityScale": 1,
 					"constrainAngle": true
 				},
 				{
 					"type": "Box2DCollisionComponent",
-					"restitution": 0.5
+					"restitution": 0.1
 				}
 			]
 		},
@@ -135,13 +134,14 @@
 				},
 				{
 					"type": "Box2DPhysicsComponent",
-					"damping": 0,
+					"damping": 0.9,
 					"gravityScale": 0,
 					"constrainAngle": true
 				},
 				{
 					"type": "Box2DCollisionComponent",
-					"restitution": 0.5
+					"restitution": 0.5,
+					"isTrigger": true
 				}
 			]
 		},

@@ -24,7 +24,9 @@ bool PlatformGame::Initialize()
 	// Create Scene
 	m_scene = std::make_unique<kiko::Scene>();
 	m_scene->Load("Scenes/Scene.json");
+	m_scene->Load("Scenes/tilemap.json");
 	m_scene->Initialize();
+
 
 	// Add Events
 	EVENT_SUBSCRIBE("OnAddPoints", PlatformGame::OnAddPoints);
@@ -48,6 +50,8 @@ void PlatformGame::Update(float dt)
 		//actor->transform.position = { kiko::random(kiko::g_renderer.GetWidth()), 100 };
 		//actor->Initialize();
 		//m_scene->Add(std::move(actor));
+
+
 	}
 		break;
 	case PlatformGame::StartGame:

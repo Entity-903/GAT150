@@ -21,6 +21,7 @@ namespace kiko
 		int groundCount = 0;
 		float m_health;
 
-		kiko::PhysicsComponent* m_physicsComponent = nullptr;
+		class PhysicsComponent* m_physicsComponent = nullptr;
+		class SpriteAnimRenderComponent* m_spriteAnimRenderComponent = nullptr;
 	};
 }

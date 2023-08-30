@@ -32,12 +32,14 @@ namespace kiko
 
 	void kiko::SpriteComponent::Draw(Renderer& renderer)
 	{
-		renderer.DrawTexture(m_texture.get(), source, m_owner->transform);
+		renderer.DrawTexture(m_texture.get(), source, m_owner->transform, origin, flipH);
 	}
 
 	void SpriteComponent::Read(const json_t& value)
 		{
 		READ_DATA(value, textureName);
 		READ_DATA(value, source);
+		READ_DATA(value, flipH);
+		READ_DATA(value, origin);
 		}
 }

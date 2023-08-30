@@ -1,5 +1,6 @@
 INFO: Factory.h(69) Class Registered: Enemy
 INFO: Factory.h(69) Class Registered: Player
+INFO: Factory.h(69) Class Registered: TilemapComponent
 INFO: Factory.h(69) Class Registered: TextRenderComponent
 INFO: Factory.h(69) Class Registered: SpriteComponent
 INFO: Factory.h(69) Class Registered: SpriteAnimRenderComponent
@@ -9,7 +10,9 @@ INFO: Factory.h(69) Class Registered: CircleCollisionComponent
 INFO: Factory.h(69) Class Registered: Box2DPhysicsComponent
 INFO: Factory.h(69) Class Registered: Box2DCollisionComponent
 INFO: Factory.h(69) Class Registered: Actor
-INFO: Main.cpp(25) Initialize Engine...
+INFO: Main.cpp(26) Initialize Engine...
 INFO: Factory.h(77) Prototype Class Registered: Crate
+INFO: Factory.h(77) Prototype Class Registered: tile01
+INFO: Factory.h(77) Prototype Class Registered: tile02
 INFO: EventManager.cpp(18) Event Subscribed: OnAddPoints
 INFO: EventManager.cpp(18) Event Subscribed: OnPlayerDead

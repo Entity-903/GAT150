@@ -16,6 +16,7 @@ namespace kiko
 
 		// Cashe off
 		m_physicsComponent = GetComponent<kiko::PhysicsComponent>();
+		m_spriteAnimRenderComponent = GetComponent<SpriteAnimRenderComponent>();
 
 		return true;
 	}
@@ -25,28 +26,42 @@ namespace kiko
 
 		Actor::Update(dt);
 
+		bool onGround = (groundCount > 0);
+		vec2 velocity = m_physicsComponent->m_velocity;
+
 		// Movement
 		float dir = 0;
 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_A)) dir = -1;
 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_D)) dir = 1;
 
-		kiko::vec2 forward = kiko::vec2{ 1, 0 }.Rotate(transform.rotation);
-
-		m_physicsComponent->ApplyForce(forward * m_speed * dir);
+		kiko::vec2 forward = kiko::vec2{ 1, 0 };
+		m_physicsComponent->ApplyForce(forward * m_speed * dir * ((onGround) ? 1 : 0.5f)); // Replace 0.95f with 10.0f for TF2 Scout
 
 		// Jump
-		bool onGround = (groundCount > 0);
 		if (onGround && 
-			kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE) &&
-			!kiko::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_SPACE))
+			kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_W) &&
+			!kiko::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_W))
 		{
 			kiko::vec2 up = kiko::vec2{ 0, -1 };
-			m_physicsComponent->SetVelocity(up * m_jump);
+			m_physicsComponent->SetVelocity(vec2{ velocity.x, -m_jump } );
+		}
+
+		// Animation
+		// Check if Moving
+		if (std::fabs(velocity.x) > 0.2f) 
+		{
+			if (dir != 0) m_spriteAnimRenderComponent->flipH = (dir < 0);
+			m_spriteAnimRenderComponent->SetSequence("run");
+		}
+		else
+		{
+			m_spriteAnimRenderComponent->SetSequence("idle");
 		}
 	}
 
 	void Player::OnCollisionEnter(Actor* other)
 	{
+		/*
 		if (other->tag == "Enemy")
 		{
 			m_health -= 10;
@@ -56,6 +71,7 @@ namespace kiko
 			EVENT_DISPATCH("OnPlayerDead", 0);
 			}
 		}
+		*/
 
 		if (other->tag == "Ground")
 		{
