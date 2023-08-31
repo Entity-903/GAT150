@@ -14,12 +14,11 @@
 #include <map>
 #include <functional>
 
-// Origin of [ 0.5, 1 ] causes problems for the Player Sprite in json
-// Hitbox for coin is FuNkY (wide hitbox, 
-// falls through a platform and lands on the lower platform, 
-// and if player lands on top of coin hitbox, the character struggles to get out)
-
-// Theory is that is has something to do with origin and/or source in json
+// Need to know how to check what animation sequence a sprite is on
+// Maybe it could be checked by looping through all animations a sprite could be in from the json?
+// But how would we get the sequence?
+// A method, GetSequence(), has been made in SpriteAnimRenderComponent with no definition
+// Try accessing m_sequence in SpriteAnimRenderComponent to get the current sequence
 
 using namespace std;
 

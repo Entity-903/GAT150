@@ -27,6 +27,7 @@ namespace kiko
 		Actor::Update(dt);
 
 		bool onGround = (groundCount > 0);
+		//bool isAttacking = (m_spriteAnimRenderComponent->SetSequence("attack")) ? true : false;
 		vec2 velocity = m_physicsComponent->m_velocity;
 
 		// Movement
@@ -66,6 +67,13 @@ namespace kiko
 		else
 		{
 			m_spriteAnimRenderComponent->SetSequence("idle");
+		}
+
+		// Attack: Check if onGround and Attacking
+		if (onGround && kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE))
+		{
+			m_physicsComponent->SetVelocity(0);
+			m_spriteAnimRenderComponent->SetSequence("attack");
 		}
 	}
 

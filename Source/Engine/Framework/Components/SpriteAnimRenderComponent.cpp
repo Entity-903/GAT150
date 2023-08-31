@@ -56,6 +56,11 @@ namespace kiko
 		}
 	}
 
+	void SpriteAnimRenderComponent::GetSequence()
+	{
+		// 
+	}
+
 	void SpriteAnimRenderComponent::UpdateSource()
 	{
 		vec2 cellSize = m_texture->GetSize() / vec2{ m_sequence->numColumns, m_sequence->numRows };

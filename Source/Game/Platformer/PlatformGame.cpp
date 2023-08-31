@@ -18,7 +18,7 @@ bool PlatformGame::Initialize()
 	//m_gameoverText = std::make_unique<kiko::Text>(GET_RESOURCE(kiko::Font, "ArcadeClassic.ttf", 24));
 	//m_gameoverText->Create(kiko::g_renderer, "Game Over", kiko::Color{ 1, 1, 1, 1 });
 
-	// Load Audio
+	// Load Audio (None currently)
 	
 
 	// Create Scene

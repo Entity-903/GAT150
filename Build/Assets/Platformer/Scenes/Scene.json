@@ -60,7 +60,7 @@
 			"persistent": true,
 			"transform": {
 				"position": [ 100, 0 ],
-				"scale": 1,
+				"scale": 1.5,
 				"rotation": 0
 			},
 			"speed": 50.0,
@@ -91,6 +91,15 @@
 							"startFrame": 1,
 							"endFrame": 10,
 							"textureName": "Textures/KnightSprites/Run.png"
+						},
+						{
+							"name": "attack",
+							"fps": 12,
+							"numColumns": 4,
+							"numRows": 1,
+							"startFrame": 1,
+							"endFrame": 4,
+							"textureName": "Textures/KnightSprites/Attack.png"
 						}
 					]
 				},
