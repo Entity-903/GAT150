@@ -10,7 +10,8 @@ INFO: Factory.h(69) Class Registered: CircleCollisionComponent
 INFO: Factory.h(69) Class Registered: Box2DPhysicsComponent
 INFO: Factory.h(69) Class Registered: Box2DCollisionComponent
 INFO: Factory.h(69) Class Registered: Actor
-INFO: Main.cpp(29) Initialize Engine...
+INFO: Main.cpp(33) Initialize Engine...
+INFO: Factory.h(77) Prototype Class Registered: Enemy
 INFO: Factory.h(77) Prototype Class Registered: Crate
 INFO: Factory.h(77) Prototype Class Registered: tile01
 INFO: Factory.h(77) Prototype Class Registered: tile02

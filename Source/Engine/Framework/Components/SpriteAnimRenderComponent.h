@@ -30,7 +30,7 @@ namespace kiko
 		void Update(float dt) override;
 
 		void SetSequence(const std::string& name, bool update = true);
-		void GetSequence();
+		std::string GetSequence();
 
 		void UpdateSource();
 

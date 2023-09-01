@@ -32,7 +32,10 @@ namespace kiko
 	}
 	void Actor::OnDestroy()
 	{
-		//
+		for (auto& component : components)
+		{
+			component->OnDestroy();
+		}
 	}
 	void Actor::Update(float dt)
 	{

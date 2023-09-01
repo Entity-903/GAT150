@@ -39,9 +39,9 @@ namespace kiko
 	void Enemy::OnCollisionEnter(Actor* other)
 	{
 
-		if (other->tag == "Player")
+		if (other->tag == "Player" && dynamic_cast<Player*>(other)->m_spriteAnimRenderComponent->GetSequence() == "attack")
 		{
-			//m_health -= 10;
+			m_health -= 10;
 			std::cout << m_health << "\n";
 			if (m_health <= 0)
 			{
@@ -67,7 +67,7 @@ namespace kiko
 				m_scene->Add(std::move(emitter));
 
 				// Points and Destruction
-				kiko::EventManager::Instance().DispatchEvent("OnAddPoints", 100);
+				kiko::EventManager::Instance().DispatchEvent("OnAddPoints", 50);
 				//m_game->AddPoints(100);
 				destroyed = true;
 			}

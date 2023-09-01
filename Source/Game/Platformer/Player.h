@@ -15,6 +15,9 @@ namespace kiko
 		void OnCollisionEnter(Actor* other) override;
 		void OnCollisionExit(Actor* other) override;
 
+		friend class Enemy;
+		friend class PlatformGame;
+
 	private:
 		float m_speed;
 		float m_jump;

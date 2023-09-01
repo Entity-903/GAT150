@@ -19,6 +19,7 @@
 		{
 			"type": "Actor",
 			"name": "Coin",
+			"tag": "Coin",
 			"persistent": true,
 			"transform": {
 				"position": [ 400, 300 ],
@@ -100,6 +101,15 @@
 							"startFrame": 1,
 							"endFrame": 4,
 							"textureName": "Textures/KnightSprites/Attack.png"
+						},
+						{
+							"name": "death",
+							"fps": 12,
+							"numColumns": 10,
+							"numRows": 1,
+							"startFrame": 1,
+							"endFrame": 10,
+							"textureName": "Textures/KnightSprites/Death.png"
 						}
 					]
 				},
@@ -120,6 +130,7 @@
 			"name": "Enemy",
 			"tag": "Enemy",
 			"persistent": true,
+			"prototype": true,
 			"transform": {
 				"position": [ 500, 200 ],
 				"scale": 2.0,
@@ -207,7 +218,7 @@
 			"name": "ScoreText",
 			"persistent": true,
 			"transform": {
-				"position": [ 400, 200 ],
+				"position": [100, 50 ],
 				"scale": 2.0,
 				"rotation": 0
 			},
@@ -216,17 +227,17 @@
 					"type": "TextRenderComponent",
 					"fontName": "Fonts/ArcadeClassic.ttf",
 					"fontSize": 24,
-					"text": "Platformer",
+					"text": "Score ",
 					"color": [ 1, 0, 0, 1 ]
 				}
 			]
 		},
 		{
 			"type": "Actor",
-			"name": "GameOverText",
+			"name": "HealthText",
 			"persistent": true,
 			"transform": {
-				"position": [ 400, 200 ],
+				"position": [ 700, 50 ],
 				"scale": 2.0,
 				"rotation": 0
 			},
@@ -235,7 +246,7 @@
 					"type": "TextRenderComponent",
 					"fontName": "Fonts/ArcadeClassic.ttf",
 					"fontSize": 24,
-					"text": "Platformer",
+					"text": "Health ",
 					"color": [ 1, 0, 0, 1 ]
 				}
 			]

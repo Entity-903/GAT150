@@ -56,9 +56,9 @@ namespace kiko
 		}
 	}
 
-	void SpriteAnimRenderComponent::GetSequence()
+	std::string SpriteAnimRenderComponent::GetSequence()
 	{
-		// 
+		return m_sequence->name;
 	}
 
 	void SpriteAnimRenderComponent::UpdateSource()

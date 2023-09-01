@@ -20,6 +20,10 @@
 // A method, GetSequence(), has been made in SpriteAnimRenderComponent with no definition
 // Try accessing m_sequence in SpriteAnimRenderComponent to get the current sequence
 
+// Animation for the attack plays, but it loops until the character moves again, effectively replacing the idle animation...
+
+// How to update the scoreText using the json?
+
 using namespace std;
 
 

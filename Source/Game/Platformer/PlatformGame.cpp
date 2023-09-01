@@ -6,6 +6,8 @@
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
 #include "Renderer/Text.h"
+#include "Enemy.h"
+#include "Player.h"
 
 
 bool PlatformGame::Initialize()
@@ -44,30 +46,61 @@ void PlatformGame::Update(float dt)
 {
 	switch (m_state)
 	{
-	case PlatformGame::Title:
+	case eState::Title:
 	{
 		//auto actor = INSTANTIATE(Actor, "Crate");
 		//actor->transform.position = { kiko::random(kiko::g_renderer.GetWidth()), 100 };
 		//actor->Initialize();
 		//m_scene->Add(std::move(actor));
 
-
+		m_state = eState::StartGame;
 	}
 		break;
-	case PlatformGame::StartGame:
+	case eState::StartGame:
 		m_score = 0;
 		m_lives = 3;
 		m_state = eState::StartLevel;
 		break;
-	case PlatformGame::StartLevel:
+	case eState::StartLevel:
+	{
+		m_spawnTimer += dt;
+		if (m_spawnTimer >= m_spawnTime)
+		{
+			m_spawnTimer = 0.0f;
+
+			auto enemy = INSTANTIATE(Enemy, "Enemy");
+			enemy->transform.position = { kiko::randomf((float)kiko::g_renderer.GetWidth()), kiko::randomf((float)kiko::g_renderer.GetHeight()) };
+			enemy->m_game = this;
+
+			enemy->Initialize();
+			m_scene->Add(std::move(enemy));
+		}
+
+		auto healthText = m_scene->GetActorByName("HealthText");
+		if (healthText != nullptr)
+		{
+			auto player = m_scene->GetActorByName("Player");
+			if (player != nullptr)
+			{
+			healthText->GetComponent<kiko::TextRenderComponent>()->SetText("Health " + std::to_string(dynamic_cast<kiko::Player*>(player)->m_health));
+			}
+		}
+
+		auto scoreText = m_scene->GetActorByName("ScoreText");
+		if (scoreText != nullptr)
+		{
+			scoreText->GetComponent<kiko::TextRenderComponent>()->SetText("Score " + std::to_string(m_score));
+		}
+
+	}
 		break;
-	case PlatformGame::Game:
+	case eState::Game:
 		break;
 	case eState::PlayerDeadStart:
 		break;
-	case PlatformGame::PlayerDead:
+	case eState::PlayerDead:
 		break;
-	case PlatformGame::GameOver:
+	case eState::GameOver:
 		break;
 	default:
 		break;

@@ -27,7 +27,7 @@ namespace kiko
 		Actor::Update(dt);
 
 		bool onGround = (groundCount > 0);
-		//bool isAttacking = (m_spriteAnimRenderComponent->SetSequence("attack")) ? true : false;
+		bool isAttacking = (m_spriteAnimRenderComponent->GetSequence() == "attack");
 		vec2 velocity = m_physicsComponent->m_velocity;
 
 		// Movement
@@ -58,38 +58,48 @@ namespace kiko
 		m_physicsComponent->SetGravityScale((velocity.y > 0) ? 3 : 2);
 
 		// Animation
-		// Check if Moving
-		if (std::fabs(velocity.x) > 0.2f) 
+		if (onGround && kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE) && !kiko::g_inputSystem.GetPreviousKeyDown(SDL_SCANCODE_SPACE))
 		{
+			m_physicsComponent->SetVelocity(0);
+			m_spriteAnimRenderComponent->SetSequence("attack");
+		} 
+		// Check if Moving
+		else if (std::fabs(velocity.x) > 0.2f)
+		{
+			// Run Animation
 			if (dir != 0) m_spriteAnimRenderComponent->flipH = (dir < 0);
 			m_spriteAnimRenderComponent->SetSequence("run");
 		}
 		else
 		{
-			m_spriteAnimRenderComponent->SetSequence("idle");
+			// Idle Animation
+			if (!isAttacking) m_spriteAnimRenderComponent->SetSequence("idle");
 		}
-
-		// Attack: Check if onGround and Attacking
-		if (onGround && kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE))
+		
+		if (m_health <= 0)
 		{
-			m_physicsComponent->SetVelocity(0);
-			m_spriteAnimRenderComponent->SetSequence("attack");
+			m_spriteAnimRenderComponent->SetSequence("death");
 		}
 	}
 
 	void Player::OnCollisionEnter(Actor* other)
 	{
-		/*
-		if (other->tag == "Enemy")
+		if (other->tag == "Coin")
+		{
+			kiko::EventManager::Instance().DispatchEvent("OnAddPoints", 100);
+			other->destroyed = true;
+		}
+
+		if (other->tag == "Enemy" && m_spriteAnimRenderComponent->GetSequence() != "attack")
 		{
 			m_health -= 10;
+			std::cout << m_health << "\n";
 			if (m_health <= 0)
 			{
 			destroyed = true;
 			EVENT_DISPATCH("OnPlayerDead", 0);
 			}
 		}
-		*/
 
 		if (other->tag == "Ground")
 		{
